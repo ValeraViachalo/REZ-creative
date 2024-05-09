@@ -13,7 +13,7 @@ export const CardProject = ({ project }) => {
       {isTouch ? (
         <CardProjectMobile project={project} />
       ) : (
-        <CardProjectDesktop project={project} />
+        <CardProjectDesktop1 project={project} />
       )}
     </>
   );
@@ -88,3 +88,30 @@ const CardProjectDesktop = ({ project }) => {
     </Link>
   );
 };
+
+const CardProjectDesktop1 = ({ project }) => {
+  const { slug, img: srcBg, img_hover: srcBgZoomed, logo } = project;
+
+  const [images, setImages] = useState([srcBg, srcBgZoomed]);
+
+  useEffect(() => {
+    const preloadImage = new Image();
+    preloadImage.src = srcBgZoomed;
+    preloadImage.onload = () => {
+      setImages([srcBg, preloadImage.src]);
+    };
+  }, [srcBg, srcBgZoomed]);
+
+  return (
+    <Link className="pixel-card pixel-card-new" to={`/work/${slug}`}>
+      <Pixelify src={images[0]} pixelSize={0} />
+      <Pixelify src={images[0]} pixelSize={18} />
+      <Pixelify src={images[0]} pixelSize={28} />
+      <Pixelify src={images[1]} pixelSize={0} />
+      <div className="pixel-card__logo">
+        <img src={logo} alt="" className="pixel-card__logo-image" />
+      </div>
+    </Link>
+  );
+};
+
