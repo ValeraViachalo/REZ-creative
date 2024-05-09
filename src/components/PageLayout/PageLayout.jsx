@@ -9,7 +9,7 @@ import { Footer } from "../Footer/Footer";
 import { DataContext, DataProvider } from "@/helpers/dataHelpers/dataProvider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReactPlayer from "react-player";
-import { URL_HOME_DATA, URL_WORKS_DETAILS } from "@/helpers/dataHelpers/linksAPI";
+import { URL_HEADER, URL_HOME_DATA, URL_WORKS_DETAILS } from "@/helpers/dataHelpers/linksAPI";
 
 const colors = ["#ff7215", "#82c5ff", "#feb200", "#d333ea", "#00A79D"];
 
@@ -67,7 +67,9 @@ export const PageLayout = ({ children }) => {
 
   return (
     <div className="inner">
-      <Header />
+      <DataProvider url={URL_HEADER}>
+        <Header />
+      </DataProvider>
       <motion.div
         className="page-slide"
         style={{ borderColor: slideColor }}

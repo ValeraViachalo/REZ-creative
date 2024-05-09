@@ -245,9 +245,11 @@ const WorksTopDesktop = () => {
         finalTitleRef.current,
         {
           opacity: 0,
+          yPercent: -50,
         },
         {
           opacity: 1,
+          yPercent: -50,
           ease: "expo.inOut",
           scrollTrigger: {
             trigger: mainRef.current,
@@ -262,9 +264,13 @@ const WorksTopDesktop = () => {
         finalTitleRef.current,
         {
           scale: 0.2,
+          yPercent: -50,
+
         },
         {
           scale: 1,
+          yPercent: -50,
+
           ease: "expo.inOut",
           scrollTrigger: {
             trigger: mainRef.current,

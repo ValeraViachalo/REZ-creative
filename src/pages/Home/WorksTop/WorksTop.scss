@@ -46,10 +46,13 @@
 
   &__final-title {
     position: sticky;
-    // top: 24.6vw;
-    top: 47lvh;
+    top: 54vh;
     left: 50%;
     // transform: translate(0%, -40%) scale(0.2);
+    
+    @media screen and (min-aspect-ratio: 15/9) and (max-aspect-ratio: 17/9) {
+      top: 56vh;
+    }
   }
 
   &__lines {
