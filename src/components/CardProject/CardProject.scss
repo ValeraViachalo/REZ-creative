@@ -88,7 +88,7 @@
   opacity: 0;
   transition: opacity 50ms;
   position: absolute;
-  top: 0;
+  inset: 0;
 }
 
 .pixel-card-new canvas:nth-of-type(1) {
