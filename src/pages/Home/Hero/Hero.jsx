@@ -24,6 +24,69 @@ export const Hero = () => {
   const currentVideoRef = useRef(currentVideo);
 
   useEffect(() => {
+  if (loaderFinished && videoArray.length > 0) {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    ctx.imageSmoothingEnabled = false;
+
+    const loop = () => {
+      const currentVideoElement = videoArray[currentVideoRef.current];
+
+      if (
+        currentVideoElement &&
+        !currentVideoElement.paused &&
+        !currentVideoElement.ended &&
+        loaderFinished
+      ) {
+        const scaleWidth = 80;
+        const scaleHeight = 45;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.drawImage(
+          currentVideoElement,
+          0,
+          0,
+          scaleWidth,
+          scaleHeight
+        );
+
+        ctx.drawImage(
+          canvas,
+          0,
+          0,
+          scaleWidth,
+          scaleHeight,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+      }
+
+      setTimeout(loop, 1000 / 60);
+    };
+
+    const currentVideoElement = videoArray[currentVideoRef.current];
+    if (currentVideoElement) {
+      currentVideoElement.addEventListener("play", loop, 0);
+      currentVideoElement.addEventListener("ended", () => {
+        setCurrentVideo((currentVideoRef.current + 1) % videoArray.length);
+      });
+    }
+
+    return () => {
+      currentVideoElement.removeEventListener("play", loop);
+      currentVideoElement.removeEventListener("ended", () => {
+        setCurrentVideo((currentVideoRef.current + 1) % videoArray.length);
+      });
+    };
+  }
+}, [loaderFinished, videoArray, currentVideo, currentVideoRef, canvasRef]);
+
+
+  useEffect(() => {
     currentVideoRef.current = currentVideo;
   }, [currentVideo]);
 
