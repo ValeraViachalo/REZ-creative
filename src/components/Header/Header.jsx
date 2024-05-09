@@ -12,9 +12,12 @@ import { Link, useLocation } from "react-router-dom";
 import { motionParametr } from "@/helpers/motionParametr";
 import { HeaderAnim, MenuAnim, anim } from "@/helpers/anim";
 import AnchorLink from "../AnchorLink/AnchorLink";
+import { DataContext } from "@/helpers/dataHelpers/dataProvider";
 
 export const Header = () => {
   const { loaderFinished } = useContext(LoaderContext);
+
+  const { data, isLoading } = useContext(DataContext);
 
   const location = useLocation();
   const { pathname } = location;
@@ -46,97 +49,170 @@ export const Header = () => {
     });
   }, [window.innerHeight, pathname]);
 
-  return loaderFinished && (
-    <AnimatePresence mode="wait">
-      <motion.header className="header" key={`header-location-${pathname}`}>
-        <motion.div
-          custom={"-"}
-          className="left"
-          {...anim(HeaderAnim.navPresence)}
-        >
-          <Link to="/work">Work</Link>
-          <Link to="/about">About us</Link>
-        </motion.div>
-
-        <Link to="/" className="header__logo-wrapper">
-          <motion.div
-            {...anim(HeaderAnim.logo)}
-            className="header__logo"
-            onClick={() => setisActive(false)}
-          >
-            <Logo />
-          </motion.div>
-        </Link>
-        <motion.div
-          custom={""}
-          className="right"
-          {...anim(HeaderAnim.navPresence)}
-        >
-          <Link to="/vacancies" className="link-with-arrow">
-            Join our team
-          </Link>
-          <AnchorLink toSection="#contact-us">Contact us</AnchorLink>
-        </motion.div>
-
-        <motion.div
-          custom={""}
-          className="header__menu-button"
-          {...anim(HeaderAnim.navPresence)}
-        >
-          <HeaderButton isActive={isActive} setIsActive={setisActive} />
-        </motion.div>
-      </motion.header>
-
-      <AnimatePresence>
-        {isFixed && (
-          <motion.header
-            className="header header--fixed"
-            {...anim(HeaderAnim.fixedPresence)}
-            key={`header--fixed-${pathname}`}
-          >
-            <motion.div
-              custom={"-"}
-              className="left"
-              {...anim(HeaderAnim.navPresence)}
-            >
-              <Link to="/work">Work</Link>
-              <Link to="/about">About us</Link>
-            </motion.div>
-
-            <Link to="/" className="header__logo-wrapper">
-              <motion.div
-                {...anim(HeaderAnim.logo)}
-                className="header__logo"
-                onClick={() => setisActive(false)}
-              >
-                <Logo />
-              </motion.div>
-            </Link>
-            <motion.div
-              custom={""}
-              className="right"
-              {...anim(HeaderAnim.navPresence)}
-            >
-              <Link to="/vacancies" className="link-with-arrow">
-                Join our team
-              </Link>
-              <AnchorLink toSection="#contact-us">Contact us</AnchorLink>
-            </motion.div>
-
-            <motion.div
-              custom={""}
-              className="header__menu-button"
-              {...anim(HeaderAnim.navPresence)}
-            >
-              <HeaderButton isActive={isActive} setIsActive={setisActive} />
-            </motion.div>
-          </motion.header>
-        )}
-      </AnimatePresence>
+  return (
+    loaderFinished && (
       <AnimatePresence mode="wait">
-        {isActive && <Nav setisActive={setisActive} />}
+        <motion.header
+          className="header container"
+          key={`header-location-${pathname}`}
+        >
+          <motion.div
+            custom={"-"}
+            className="left"
+            {...anim(HeaderAnim.navPresence)}
+          >
+            {data.left_menu.map((currLink, i) => {
+              return currLink.link === "#contact-us" ? (
+                <AnchorLink
+                  toSection={currLink.link}
+                  key={`left_menu-header--${i}-static`}
+                >
+                  {currLink.title}
+                </AnchorLink>
+              ) : (
+                <Link
+                  to={currLink.link}
+                  key={`left_menu-header--${i}-static`}
+                  className={
+                    currLink.link === "/vacancies" && "link-with-arrow"
+                  }
+                >
+                  {currLink.title}
+                </Link>
+              );
+            })}
+          </motion.div>
+
+          <Link to="/" className="header__logo-wrapper">
+            <motion.div
+              {...anim(HeaderAnim.logo)}
+              className="header__logo"
+              onClick={() => setisActive(false)}
+            >
+              <Logo />
+            </motion.div>
+          </Link>
+          <motion.div
+            custom={""}
+            className="right"
+            {...anim(HeaderAnim.navPresence)}
+          >
+            {data.right_menu.map((currLink, i) => {
+              return currLink.link === "#contact-us" ? (
+                <AnchorLink
+                  toSection={currLink.link}
+                  key={`right_menu-header--${i}-static`}
+                >
+                  {currLink.title}
+                </AnchorLink>
+              ) : (
+                <Link
+                  to={currLink.link}
+                  key={`right_menu-header--${i}-static`}
+                  className={
+                    currLink.link === "/vacancies" && "link-with-arrow"
+                  }
+                >
+                  {currLink.title}
+                </Link>
+              );
+            })}
+          </motion.div>
+
+          <motion.div
+            custom={""}
+            className="header__menu-button"
+            {...anim(HeaderAnim.navPresence)}
+          >
+            <HeaderButton isActive={isActive} setIsActive={setisActive} />
+          </motion.div>
+        </motion.header>
+
+        <AnimatePresence>
+          {isFixed && (
+            <motion.header
+              className="header header--fixed container"
+              {...anim(HeaderAnim.fixedPresence)}
+              key={`header--fixed-${pathname}`}
+            >
+              <motion.div
+                custom={"-"}
+                className="left"
+                {...anim(HeaderAnim.navPresence)}
+              >
+                {data.left_menu.map((currLink, i) => {
+                  return currLink.link === "#contact-us" ? (
+                    <AnchorLink
+                      toSection={currLink.link}
+                      key={`left_menu-header--${i}-static`}
+                    >
+                      {currLink.title}
+                    </AnchorLink>
+                  ) : (
+                    <Link
+                      to={currLink.link}
+                      key={`left_menu-header--${i}-static`}
+                      className={
+                        currLink.link === "/vacancies" && "link-with-arrow"
+                      }
+                    >
+                      {currLink.title}
+                    </Link>
+                  );
+                })}
+              </motion.div>
+
+              <Link to="/" className="header__logo-wrapper">
+                <motion.div
+                  {...anim(HeaderAnim.logo)}
+                  className="header__logo"
+                  onClick={() => setisActive(false)}
+                >
+                  <Logo />
+                </motion.div>
+              </Link>
+              <motion.div
+                custom={""}
+                className="right"
+                {...anim(HeaderAnim.navPresence)}
+              >
+                {data.right_menu.map((currLink, i) => {
+                  return currLink.link === "#contact-us" ? (
+                    <AnchorLink
+                      toSection={currLink.link}
+                      key={`right_menu-header--${i}-static`}
+                    >
+                      {currLink.title}
+                    </AnchorLink>
+                  ) : (
+                    <Link
+                      to={currLink.link}
+                      key={`right_menu-header--${i}-static`}
+                      className={
+                        currLink.link === "/vacancies" && "link-with-arrow"
+                      }
+                    >
+                      {currLink.title}
+                    </Link>
+                  );
+                })}
+              </motion.div>
+
+              <motion.div
+                custom={""}
+                className="header__menu-button"
+                {...anim(HeaderAnim.navPresence)}
+              >
+                <HeaderButton isActive={isActive} setIsActive={setisActive} />
+              </motion.div>
+            </motion.header>
+          )}
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
+          {isActive && <Nav setisActive={setisActive} />}
+        </AnimatePresence>
       </AnimatePresence>
-    </AnimatePresence>
+    )
   );
 };
 

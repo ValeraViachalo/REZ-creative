@@ -5,13 +5,15 @@
   align-items: center;
   justify-content: space-between;
   position: absolute;
+  left: 0;
+  right: 0;
   z-index: 12;
-  width: 94vw;
-  padding: 1vw 3.13vw;
+  padding-top: 1.2vw;
+  padding-bottom: 1.2vw;
   
   @include forVerticalTablet() {
-    padding: 0 5.3vw;
-    width: 89vw;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   &--fixed {
@@ -26,19 +28,25 @@
     @include hoverForLinks();
 
     &-wrapper {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       width: 8vw;
-      margin-left: 6vw;
+      // margin-left: 6vw;
       overflow: hidden;
 
       @include forVerticalTablet() {
         width: 14vw;
         transform: none;
         margin-left: 0;
+        position: static;
       }
       
       @include forMobile() {
         width: 16vw;
         transform: none;
+        position: static;
+
       }
     }
   }
