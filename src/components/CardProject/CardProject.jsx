@@ -4,6 +4,7 @@ import { useIsTouchDevice } from "@/helpers/isTouchDevice";
 
 import "./CardProject.scss";
 import { Link } from "react-router-dom";
+import { Pixelize } from "../Pixelize/Pixelize";
 
 export const CardProject = ({ project }) => {
   const isTouch = useIsTouchDevice();
@@ -13,7 +14,7 @@ export const CardProject = ({ project }) => {
       {isTouch ? (
         <CardProjectMobile project={project} />
       ) : (
-        <CardProjectDesktop1 project={project} />
+        <CardProjectDesktop project={project} />
       )}
     </>
   );
@@ -35,7 +36,7 @@ const CardProjectMobile = ({ project }) => {
 const CardProjectDesktop = ({ project }) => {
   const { slug, img: srcBg, img_hover: srcBgZoomed, logo } = project;
 
-  const [pixelSize, setPixelSize] = useState(0);
+  const [pixelSize, setPixelSize] = useState(1);
   const [images, setImages] = useState([srcBg, srcBgZoomed]);
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -48,40 +49,39 @@ const CardProjectDesktop = ({ project }) => {
   }, [srcBg, srcBgZoomed]);
 
   const animEnterStepsHandler = () => {
-    setPixelSize(18);
+    setPixelSize(16);
 
     setTimeout(() => {
-      setPixelSize(28);
+      setPixelSize(22);
     }, 200);
 
     setTimeout(() => {
-      setPixelSize(0);
+      setPixelSize(1);
       setImageIndex(1); 
     }, 400);
   };
 
   const animLeaveStepsHandler = () => {
-    setPixelSize(28);
-    setImageIndex(0); 
+    setPixelSize(22);
     
     setTimeout(() => {
-      setPixelSize(18);
+      setPixelSize(16);
     }, 200);
     
     setTimeout(() => {
+      setPixelSize(1);
       setImageIndex(0); 
-      setPixelSize(0);
     }, 400);
   };
 
   return (
     <Link
-    to={`/work/${slug}`}
+      to={`/work/${slug}`}
       className="pixel-card"
       onMouseEnter={() => animEnterStepsHandler()}
       onMouseLeave={() => animLeaveStepsHandler()}
     >
-      <Pixelify src={images[imageIndex]} pixelSize={pixelSize} />
+      <Pixelize imageUrl={images[imageIndex]} pixelSize={pixelSize} />
       <div className="pixel-card__logo">
         <img src={logo} alt="" className="pixel-card__logo-image" />
       </div>
@@ -114,4 +114,3 @@ const CardProjectDesktop1 = ({ project }) => {
     </Link>
   );
 };
-

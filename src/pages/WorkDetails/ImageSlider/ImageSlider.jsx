@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Pixelify } from "react-pixelify";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "./ImageSlider.scss";
 import "@splidejs/react-splide/css/core";
 import { DataContext } from "@/helpers/dataHelpers/dataProvider";
+import { Pixelize } from "@/components/Pixelize/Pixelize";
 
 export const ImageSlider = () => {
   const { data, isLoading } = useContext(DataContext);
@@ -29,7 +30,7 @@ export const ImageSlider = () => {
               arrow: "slider__arrow",
               prev: "slider__arrow--prev",
               next: "slider__arrow--next",
-            }
+            },
           }}
           hasTrack={false}
         >
@@ -40,16 +41,13 @@ export const ImageSlider = () => {
                   src={currImg}
                   className="slide__image"
                 />
-                <Pixelify
-                  src={currImg}
-                  pixelSize={20}
-                />
+                <Pixelize imageUrl={currImg} pixelSize={18} />
               </SplideSlide>
             ))}
           </SplideTrack>
           <div className="slider-free" data-not-desktop--flex>
             {data.slider.map((currImg, i) => (
-              <img src={currImg} alt="slider" className="slider-free__image"/>
+              <img src={currImg} alt="slider" className="slider-free__image" />
             ))}
           </div>
           <div className="bottom container">
