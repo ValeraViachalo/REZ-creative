@@ -3,8 +3,9 @@ import { Pixelify } from "react-pixelify";
 import { useIsTouchDevice } from "@/helpers/isTouchDevice";
 
 import "./CardProject.scss";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Pixelize } from "../Pixelize/Pixelize";
+import { getSearchWith } from "@/helpers/getSearchWith";
 
 export const CardProject = ({ project }) => {
   const isTouch = useIsTouchDevice();
@@ -34,11 +35,12 @@ const CardProjectMobile = ({ project }) => {
 };
 
 const CardProjectDesktop = ({ project }) => {
-  const { slug, img: srcBg, img_hover: srcBgZoomed, logo } = project;
+  const { slug, img: srcBg, img_hover: srcBgZoomed, logo, type, title } = project;
 
   const [pixelSize, setPixelSize] = useState(1);
   const [images, setImages] = useState([srcBg, srcBgZoomed]);
   const [imageIndex, setImageIndex] = useState(0);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const preloadImage = new Image();
@@ -74,16 +76,32 @@ const CardProjectDesktop = ({ project }) => {
     }, 400);
   };
 
+  const handleUrl = () => {
+    if (type === "page") {
+      return `/work/${slug}`
+    } else if (type === "popUp") {
+      return {
+        search: getSearchWith(searchParams, { ["popUpVideo"]: project?.videoUrl, ["name"]: title })
+      }
+    }
+  }
+
   return (
     <Link
-      to={`/work/${slug}`}
+      // to={`/work/${slug}`}
+      to={handleUrl()}
       className="pixel-card"
       onMouseEnter={() => animEnterStepsHandler()}
       onMouseLeave={() => animLeaveStepsHandler()}
     >
       <Pixelize imageUrl={images[imageIndex]} pixelSize={pixelSize} />
       <div className="pixel-card__logo">
-        <img src={logo} alt="" className="pixel-card__logo-image" />
+        {logo.type === "logo" && (
+          <img src={logo.url} alt="" className="pixel-card__logo-image" />
+        )}
+        {logo.type === "text" && (
+          <h2 className="semiBold">{logo.text}</h2>
+        )}
       </div>
     </Link>
   );

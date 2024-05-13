@@ -7,6 +7,11 @@ import gsap from "gsap";
 import { CustomEase, ScrollTrigger } from "gsap/all";
 import { LoaderContext } from "@/components/Loader/LoaderContext";
 
+const transition = {
+  duration: 0.8,
+  delay: 0.85,
+}
+
 export default function WorksHero() {
   const { data, isLoading } = useContext(DataContext);
   const { loaderFinished } = useContext(LoaderContext);
@@ -29,8 +34,7 @@ export default function WorksHero() {
           },
           {
             clipPath: "inset(0 0 0% 0)",
-            duration: 0.7,
-            delay: 0.7,
+            ...transition,
             ease: CustomEase.create(
               "custom",
               "M0,0 C0.17,0 0.308,0.115 0.331,0.155 0.389,0.256 0.391,0.359 0.434,0.555 0.478,0.751 0.661,0.877 0.661,0.877 0.661,0.877 0.794,1 1,1 "
@@ -44,14 +48,13 @@ export default function WorksHero() {
         gsap.fromTo(
           titleRef.current,
           {
-            yPercent: 30,
+            yPercent: 70,
             opacity: 0.4,
           },
           {
-            yPercent: -30,
+            yPercent: 0,
             opacity: 1,
-            duration: 0.7,
-            delay: 0.7,
+            ...transition,
             ease: CustomEase.create(
               "custom",
               "M0,0 C0.17,0 0.308,0.115 0.331,0.155 0.389,0.256 0.391,0.359 0.434,0.555 0.478,0.751 0.661,0.877 0.661,0.877 0.661,0.877 0.794,1 1,1 "
@@ -69,8 +72,7 @@ export default function WorksHero() {
           },
           {
             scale: 1.1,
-            duration: 0.7,
-            delay: 0.7,
+            ...transition,
             ease: CustomEase.create(
               "custom",
               "M0,0 C0.17,0 0.308,0.115 0.331,0.155 0.389,0.256 0.391,0.359 0.434,0.555 0.478,0.751 0.661,0.877 0.661,0.877 0.661,0.877 0.794,1 1,1 "
@@ -80,8 +82,8 @@ export default function WorksHero() {
         0
       );
 
-      tl.to(backgroundRef.current, {
-        yPercent: 6,
+      gsap.to(backgroundRef.current, {
+        yPercent: 10,
         scrollTrigger: {
           trigger: backgroundRef.current,
           start: 'top top',

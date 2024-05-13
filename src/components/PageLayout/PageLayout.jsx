@@ -9,7 +9,12 @@ import { Footer } from "../Footer/Footer";
 import { DataContext, DataProvider } from "@/helpers/dataHelpers/dataProvider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReactPlayer from "react-player";
-import { URL_HEADER, URL_HOME_DATA, URL_WORKS_DETAILS } from "@/helpers/dataHelpers/linksAPI";
+import {
+  URL_HEADER,
+  URL_HOME_DATA,
+  URL_WORKS_DETAILS,
+} from "@/helpers/dataHelpers/linksAPI";
+import { PopUpVideo } from "../PopUpVideo/PopUpVideo";
 
 const colors = ["#ff7215", "#82c5ff", "#feb200", "#d333ea", "#00A79D"];
 
@@ -88,6 +93,7 @@ export const PageLayout = ({ children }) => {
         )}
       </motion.div>
       <motion.div className="page" {...anim(PageTransition.perspective)}>
+        <PopUpVideo />
         <motion.div {...anim(PageTransition.opacity)}>{children}</motion.div>
         <Footer />
       </motion.div>

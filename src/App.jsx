@@ -27,7 +27,7 @@ function App() {
     <QueryClientProvider client={queryC}>
       <ScrollProvider>
         <LoaderProvider>
-          <Loader />
+          {/* <Loader /> */}
           <Root />
         </LoaderProvider>
       </ScrollProvider>
@@ -86,8 +86,8 @@ const Root = () => {
         className={classNames("main", {
           "main--loading": !loaderFinished,
         })}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: loaderFinished ? 1 : 0 }}
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: loaderFinished ? 1 : 0 }}
       >
         <AnimatePresence mode="wait">
           {React.cloneElement(element, { key: location.pathname })}

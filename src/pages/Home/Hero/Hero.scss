@@ -31,6 +31,12 @@
     }
   }
 
+  &__works-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
   &__logo {
     grid-column: 1/13;
     width: 100%;

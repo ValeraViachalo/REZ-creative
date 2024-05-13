@@ -7,9 +7,9 @@ import classNames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { anim, TimelineAnim } from "@/helpers/anim";
 import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
-  
   const { loaderFinished } = useContext(LoaderContext);
 
   const { data, isLoading } = useContext(DataContext);
@@ -54,62 +54,68 @@ export const Hero = () => {
   }, []);
 
   useEffect(() => {
-  if (videoArray.length && loaderFinished) {
-    const videos = document.querySelectorAll(".hero__video-bg div video");
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    if (videoArray.length && loaderFinished) {
+      const videos = document.querySelectorAll(".hero__video-bg div video");
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
 
-    ctx.imageSmoothingEnabled = false;
+      ctx.imageSmoothingEnabled = false;
 
-    const loop = () => {
-      if (
-        videos[currentVideoRef.current] &&
-        !videos[currentVideoRef.current].paused &&
-        !videos[currentVideoRef.current].ended &&
-        loaderFinished
-      ) {
-        const scaleWidth = 80;
-        const scaleHeight = 45;
+      const loop = () => {
+        if (
+          videos[currentVideoRef.current] &&
+          !videos[currentVideoRef.current].paused &&
+          !videos[currentVideoRef.current].ended &&
+          loaderFinished
+        ) {
+          const scaleWidth = 80;
+          const scaleHeight = 45;
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(
-          videos[currentVideoRef.current],
-          0,
-          0,
-          scaleWidth,
-          scaleHeight
-        );
+          ctx.drawImage(
+            videos[currentVideoRef.current],
+            0,
+            0,
+            scaleWidth,
+            scaleHeight
+          );
 
-        ctx.drawImage(
-          canvas,
-          0,
-          0,
-          scaleWidth,
-          scaleHeight,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
+          ctx.drawImage(
+            canvas,
+            0,
+            0,
+            scaleWidth,
+            scaleHeight,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+        }
+
+        requestAnimationFrame(loop);
+      };
+
+      if (videos[currentVideoRef.current]) {
+        videoArray[currentVideoRef.current].oncanplaythrough = () => {
+          videos[currentVideoRef.current].addEventListener("play", loop);
+        };
+        videos[currentVideoRef.current].addEventListener("ended", () => {
+          setCurrentVideo((currentVideoRef.current + 1) % videos.length);
+        });
       }
 
-      requestAnimationFrame(loop);
-    };
-
-    if (videos[currentVideoRef.current]) {
-      videoArray[currentVideoRef.current].oncanplaythrough = () => {
-        videos[currentVideoRef.current].addEventListener("play", loop);
-      };
-      videos[currentVideoRef.current].addEventListener("ended", () => {
-        setCurrentVideo((currentVideoRef.current + 1) % videos.length);
-      });
+      // Start the loop immediately if conditions are met
+      loop();
     }
-
-    // Start the loop immediately if conditions are met
-    loop();
-  }
-}, [videoArray, currentVideo, currentVideoRef.current, canvasRef, loaderFinished]);
+  }, [
+    videoArray,
+    currentVideo,
+    currentVideoRef.current,
+    canvasRef,
+    loaderFinished,
+  ]);
 
   useEffect(() => {
     if (currentVideo === 0) {
@@ -155,6 +161,13 @@ export const Hero = () => {
               ref={canvasRef}
             ></canvas>
           </div>
+        )}
+
+        {data.hero.timeline_list[currentVideo]?.slug && (
+          <Link
+            className="hero__works-link"
+            to={`/work/${data.hero.timeline_list[currentVideo]?.slug}`}
+          />
         )}
 
         <div

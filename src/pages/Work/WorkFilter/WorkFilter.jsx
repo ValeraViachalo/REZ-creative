@@ -10,26 +10,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { anim, WorksListAnim } from "@/helpers/anim";
-
-export const getSearchWith = (currentParam, paramToUpdate) => {
-  const newParam = new URLSearchParams(currentParam.toString());
-
-  Object.entries(paramToUpdate).forEach(([key, value]) => {
-    if (value === null) {
-      newParam.delete(key);
-    } else if (Array.isArray(value)) {
-      newParam.delete(key);
-
-      value.forEach((part) => {
-        newParam.append(key, part);
-      });
-    } else {
-      newParam.set(key, value);
-    }
-  });
-
-  return newParam.toString();
-};
+import { getSearchWith } from "@/helpers/getSearchWith";
 
 export const WorkFilter = ({ worksList, setWorksList }) => {
   const [selectedOption, setSelectedOption] = useState("all");

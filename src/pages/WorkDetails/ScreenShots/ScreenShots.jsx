@@ -13,18 +13,24 @@ export function ScreenShots() {
     !isLoading && (
       <>
         <div className="screenshots container">
-          {data.media?.screenshots_1 && (<ScreenShotsImages images={data.media?.screenshots_1} />)}
+          {data.media?.screenshots_1 && (
+            <ScreenShotsImages images={data.media?.screenshots_1} />
+          )}
         </div>
         <div className="container works-trailer">
-          <VideoPlay
-            linkUrl={data.media.video.link}
-            buttonText={data.media.video.play_button_text}
-          />
+          {data.media.video && (
+            <VideoPlay
+              linkUrl={data.media.video.link}
+              buttonText={data.media.video.play_button_text}
+            />
+          )}
         </div>
         <div className="screenshots container">
-          {data.media?.screenshots_2 && (<ScreenShotsImages images={data.media?.screenshots_2} />)}
+          {data.media?.screenshots_2 && (
+            <ScreenShotsImages images={data.media?.screenshots_2} />
+          )}
         </div>
-        <FullScreenShot image={data.media.full_screen_image}/>
+        {data.media.full_screen_image && (<FullScreenShot image={data.media.full_screen_image} />)}
       </>
     )
   );
@@ -65,18 +71,21 @@ const ScreenShotsImages = ({ images }) => {
 
 const FullScreenShot = ({ image }) => {
   useGSAP(() => {
-    gsap.to('.full-screenShot', {
-      backgroundPositionY: '100%',
+    gsap.to(".full-screenShot", {
+      backgroundPositionY: "100%",
       scrollTrigger: {
-        trigger: '.full-screenShot',
-        start: 'top bottom',
-        end: 'bottom top',
+        trigger: ".full-screenShot",
+        start: "top bottom",
+        end: "bottom top",
         scrub: true,
-      }
-    })
-  })
+      },
+    });
+  });
 
   return (
-    <div className="full-screenShot" style={{ backgroundImage: `url(${image})` }} />
-  )
-}
+    <div
+      className="full-screenShot"
+      style={{ backgroundImage: `url(${image})` }}
+    />
+  );
+};

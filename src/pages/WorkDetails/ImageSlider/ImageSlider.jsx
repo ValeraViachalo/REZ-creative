@@ -10,7 +10,7 @@ export const ImageSlider = () => {
   const { data, isLoading } = useContext(DataContext);
 
   return (
-    !isLoading && (
+    !isLoading && data.slider && (
       <div className="works-slider">
         <Splide
           options={{

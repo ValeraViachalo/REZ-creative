@@ -1,0 +1,27 @@
+@import "/src/styles/global.scss";
+
+.pop-up-video {
+  position: fixed;
+  inset: 0;
+  background-color: #00000046;
+  backdrop-filter: blur(1vw);
+  z-index: 100;
+
+  .video-play-wrapper {
+    width: 70vw;
+    margin: 1vw auto 0;
+  }
+
+  &__title {
+    margin: 1vw auto 2vw;
+    text-align: center;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    cursor: pointer;
+    @include hoverForLinks
+  }
+}

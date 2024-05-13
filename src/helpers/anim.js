@@ -216,7 +216,6 @@ export const PageTransition = {
       scale: 0.9,
       y: "-8%",
       filter: "brightness(0) blur(0.2vw)",
-      // opacity: 0.5,
       transition: {
         duration: 1.5,
         ease: [0.76, 0, 0.24, 1],
@@ -242,54 +241,54 @@ export const PageTransition = {
 export const TimelineAnim = {
   lines: {
     initial: {
-      clipPath: 'inset(0 100% 0 0)',
+      clipPath: "inset(0 100% 0 0)",
       transition: {
         duration: 0.1,
-        ease: 0
-      }
+        ease: 0,
+      },
     },
     aninate: (time) => ({
-      clipPath: 'inset(0 0% 0 0)',
+      clipPath: "inset(0 0% 0 0)",
       transition: {
         duration: time - 0.1,
-        ease: 0
-      }
+        ease: 0,
+      },
     }),
     exit: {
-      clipPath: 'inset(0 0% 0 0)',
+      clipPath: "inset(0 0% 0 0)",
       transition: {
         duration: 0.1,
-        ease: 0
-      }
-    }
+        ease: 0,
+      },
+    },
   },
   names: {
     Mobile: {
       initial: {
         y: "50%",
-        opacity: 0
+        opacity: 0,
       },
       animate: (d = 0) => ({
         y: "0%",
         opacity: 1,
         transition: {
           ...transition,
-          duration: .6,
-          delay: d
-        }
+          duration: 0.6,
+          delay: d,
+        },
       }),
       exit: (d = 0) => ({
         y: "-50%",
         opacity: 0,
         transition: {
           ...transition,
-          duration: .6,
-          delay: d
-        }
-      })
+          duration: 0.6,
+          delay: d,
+        },
+      }),
     },
-  }
-}
+  },
+};
 
 export const servicesListAnim = {
   listPresence: {
@@ -386,15 +385,39 @@ export const WorksListAnim = {
   filterMenu: {
     animate: {
       opacity: 1,
-      y: '0%',
-      x: '-10%',
+      y: "0%",
+      x: "-10%",
       transition,
     },
     exit: {
       opacity: 0,
-      y: '100%',
-      x: '-10%',
+      y: "100%",
+      x: "-10%",
       transition,
     },
   },
 };
+
+export const WorksPopUpAnim = {
+  body: {
+    initial: {
+      scale: 0.9,
+      filter: "blur(1vw)",
+      opacity: 0,
+    },
+    animate: {
+      scale: 1,
+      filter: "blur(0vw)",
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: [.75,.18,.31,.86]
+      }
+    },
+    exit: {
+      scale: 1.1,
+      filter: "blur(1vw)",
+      opacity: 0,
+    }
+  }
+}
