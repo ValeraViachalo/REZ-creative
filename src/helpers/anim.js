@@ -1,5 +1,3 @@
-import { animate, delay } from "framer-motion";
-
 export const anim = (variants) => {
   return {
     initial: "initial",
@@ -401,7 +399,7 @@ export const WorksListAnim = {
 export const WorksPopUpAnim = {
   body: {
     initial: {
-      scale: 0.9,
+      scale: 0.95,
       filter: "blur(1vw)",
       opacity: 0,
     },
@@ -415,7 +413,7 @@ export const WorksPopUpAnim = {
       }
     },
     exit: {
-      scale: 1.1,
+      scale: 1.01,
       filter: "blur(1vw)",
       opacity: 0,
     }

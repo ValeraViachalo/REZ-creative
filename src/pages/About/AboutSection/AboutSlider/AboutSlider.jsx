@@ -92,7 +92,7 @@ const AboutSliderDesktop = () => {
         sliderRef.current,
         { xPercent: -1 },
         {
-          xPercent: -82,
+          xPercent: -78,
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: "top 10%",

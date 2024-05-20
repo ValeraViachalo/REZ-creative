@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import "./PopUpVideo.scss";
 import ReactPlayer from "react-player";
 import { VideoPlay } from "../VideoPlay/VideoPlay";
 import { AnimatePresence, motion } from "framer-motion";
 import { anim, WorksPopUpAnim } from "@/helpers/anim";
+
+let timeoutId = null;
 
 export const PopUpVideo = () => {
   const navigate = useNavigate();
@@ -29,24 +31,34 @@ export const PopUpVideo = () => {
   }, [searchParams, isActive]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsActive(false);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+    if (isActive) {
+      const handleScroll = () => {
+        setIsActive(false);
+      };
+  
+      const timeoutId = setTimeout(() => {
+        window.addEventListener("scroll", handleScroll);
+      }, 1000); // Затримка в мілісекундах
+  
+      return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [isActive]);
+  
   return (
     <AnimatePresence>
       {isActive && (
         <motion.div className="pop-up-video"
         {...anim(WorksPopUpAnim.body)}
         >
-          <h1 className="pop-up-video__title">{projectName}</h1>
+          <span className="close-area" onClick={() => setIsActive(false)}/>
+          {projectName.length < 40 ? (
+            <h1 className="pop-up-video__title">{projectName}</h1>
+          ): (
+            <h2 className="pop-up-video__title">{projectName}</h2>
+          )}
           <h3
             className="pop-up-video__close"
             onClick={() => setIsActive(false)}

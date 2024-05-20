@@ -5,23 +5,63 @@
   inset: 0;
   background-color: #00000046;
   backdrop-filter: blur(1vw);
+  -webkit-backdrop-filter: blur(1vw);
   z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include forMobile {
+    backdrop-filter: blur(3vw);
+    -webkit-backdrop-filter: blur(3vw);  
+  }
 
   .video-play-wrapper {
     width: 70vw;
     margin: 1vw auto 0;
+    position: relative;
+    z-index: 3;
+
+    @include forVerticalTablet {
+      width: 85vw; 
+    }
+    
+    @include forMobile {
+      width: 90vw; 
+    }
   }
 
   &__title {
     margin: 1vw auto 2vw;
     text-align: center;
+    text-wrap: balance;
+    z-index: 3;
   }
 
   &__close {
     position: absolute;
+    z-index: 3;
     top: 1vw;
     right: 1vw;
     cursor: pointer;
-    @include hoverForLinks
+    @include hoverForLinks;
+
+    @include forHorizontalTablet {
+      top: 2.5vw;
+      right: 3vw;  
+    }
+
+    @include forVerticalTablet {
+      top: 4vw;
+      right: 4vw;  
+    }
+  }
+
+  .close-area {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 }

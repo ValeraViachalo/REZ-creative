@@ -16,6 +16,8 @@ import { CustomEase } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { LoaderContext } from "@/components/Loader/LoaderContext";
+import { ScrollContext } from "@/helpers/scrollContext";
+import { PopUpVideo } from "@/components/PopUpVideo/PopUpVideo";
 
 export default function Work() {
   useEffect(() => {
@@ -83,7 +85,7 @@ const WorksList = () => {
 
   return (
     <div className="container work-page">
-      <h1 className="super-text work-page__title" ref={titleRef}>{data.title}</h1>
+      <h1 className="super-text work-page__title" ref={titleRef} >{data.title}</h1>
       <div ref={presenceAnimRef}>
 
         <WorkFilter worksList={worksList} setWorksList={setWorksList} />

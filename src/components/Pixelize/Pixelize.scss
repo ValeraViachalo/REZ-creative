@@ -1,6 +1,9 @@
 .pixelize-canvas {
-  image-rendering: pixelated;
   object-fit: contain;
   width: 100%;
   height: 100%;
+  
+  &.pixelated {
+    image-rendering: pixelated;
+  }
 }

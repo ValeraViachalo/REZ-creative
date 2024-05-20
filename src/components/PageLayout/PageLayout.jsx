@@ -32,10 +32,6 @@ export const PageLayout = ({ children }) => {
 
   const lastPickedColors = useRef([]);
 
-  useEffect(() => {
-    ScrollTrigger.refresh(true);
-  }, [isLoading, pathname]);
-
   function getRandomColor() {
     let color;
     do {
@@ -127,7 +123,7 @@ const WorksHeroPrepered = () => {
     !isLoading && (
       <section className="works-hero works-hero--loader">
         <div className="top">
-          <h1 className="super-text top__title">{data.main.title}</h1>
+          <h1 className="top__title">{data.main.title}</h1>
         </div>
         <img
           src={data.main.image}

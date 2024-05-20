@@ -40,7 +40,7 @@ export const Nav = ({ setisActive }) => {
             </h1>
           );
         })}
-        {data.right_menu.map((currLink, i) => {
+        {[...data.right_menu].reverse().map((currLink, i) => {
           return (
             <h1 className="navigation__link-wrapper super-text">
               <motion.span

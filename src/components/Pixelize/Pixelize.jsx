@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import "./Pixelize.scss"
+import "./Pixelize.scss";
+import classNames from "classnames";
 
-export const Pixelize = ({ imageUrl, pixelSize }) => {
+export const Pixelize = ({ imageUrl, pixelSize = 1, ...rest }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -9,7 +10,7 @@ export const Pixelize = ({ imageUrl, pixelSize }) => {
     img.src = imageUrl;
     img.onload = () => {
       const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
 
       // Встановлюємо розміри канвасу відповідно до розмірів зображення
       canvas.width = img.width;
@@ -26,9 +27,28 @@ export const Pixelize = ({ imageUrl, pixelSize }) => {
       ctx.mozImageSmoothingEnabled = false;
       ctx.webkitImageSmoothingEnabled = false;
       ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(canvas, 0, 0, scaledWidth, scaledHeight, 0, 0, img.width, img.height);
+      ctx.drawImage(
+        canvas,
+        0,
+        0,
+        scaledWidth,
+        scaledHeight,
+        0,
+        0,
+        img.width,
+        img.height
+      );
     };
   }, [imageUrl, pixelSize]);
 
-  return <canvas ref={canvasRef} className="pixelize-canvas"/>;
+  return (
+    <canvas
+      ref={canvasRef}
+      className={classNames("pixelize-canvas", {
+        "pixelated": pixelSize > 10,
+      })}
+      // style={{ imageRendering: pixelSize > 10 ? "pixelated" : "none" }}
+      {...rest}
+    />
+  );
 };

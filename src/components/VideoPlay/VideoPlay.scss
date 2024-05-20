@@ -41,15 +41,14 @@
   cursor: pointer;
 
   &.hover {
-    @include hover()
- {
+    @include hover() {
       .line {
         width: 20%;
         height: 7%;
 
         @include forMobile {
-          width: 26%;
-          height: 15%;
+          width: 34%;
+          height: 18%;
         }
       }
     }
@@ -99,8 +98,8 @@
       color: $b-100;
 
       @include forMobile {
-        width: 26%;
-        height: 15%;
+        width: 34%;
+        height: 18%;
       }
     }
   }

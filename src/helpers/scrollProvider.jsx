@@ -36,6 +36,19 @@ export const ScrollProvider = ({ children }) => {
     });
   };
 
+  function stopScrolling() {
+    if (locomotiveScroll.current) {
+      locomotiveScroll.current.stop();
+    }
+  }
+  
+  
+  const startScroll = () => {
+    if (locomotiveScroll.current) {
+      locomotiveScroll.current.start();
+    }
+  };  
+
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
@@ -51,7 +64,7 @@ export const ScrollProvider = ({ children }) => {
   }, []);
 
   return (
-    <ScrollContext.Provider value={{ scrollToSection, scrollToTop }}>
+    <ScrollContext.Provider value={{ scrollToSection, scrollToTop, stopScrolling, startScroll }}>
       {children}
     </ScrollContext.Provider>
   );

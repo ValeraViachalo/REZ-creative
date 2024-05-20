@@ -98,7 +98,7 @@ export default function WorksHero() {
     !isLoading && (
       <section className="works-hero">
         <div className="top" ref={topRef}>
-          <h1 className="super-text top__title" ref={titleRef}>
+          <h1 className="top__title" ref={titleRef}>
             {data.main.title}
           </h1>
         </div>

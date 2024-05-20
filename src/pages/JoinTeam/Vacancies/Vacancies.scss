@@ -48,6 +48,10 @@
           grid-column: 11/13;
           text-align: end;
         }
+        
+        @include forHorizontalTablet {
+          text-align: end;
+        }
       }
     }
   }
@@ -102,6 +106,11 @@
     align-items: end;
     align-self: end;
     justify-self: end;
+
+    @include forHorizontalTablet {
+      grid-column: 9/11;
+
+    }
     
     @include forDesktop {
       align-self: center;

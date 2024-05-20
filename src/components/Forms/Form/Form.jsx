@@ -69,7 +69,6 @@ export const FormSend = () => {
   });
 
   return (
-    pathname !== "/terms" &&
     !isLoading && (
       <section className="main-form" ref={formRef} id="contact-us">
         <h1 className="super-text" ref={formTitleRef}>

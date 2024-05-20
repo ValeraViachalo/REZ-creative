@@ -6,6 +6,22 @@ import "./CardProject.scss";
 import { Link, useSearchParams } from "react-router-dom";
 import { Pixelize } from "../Pixelize/Pixelize";
 import { getSearchWith } from "@/helpers/getSearchWith";
+import classNames from "classnames";
+
+const handleUrl = (project, searchParams) => {
+  const { video_for_popup, title, slug } = project;
+
+  if (video_for_popup.length) {
+    return {
+      search: getSearchWith(searchParams, {
+        ["popUpVideo"]: project?.video_for_popup,
+        ["name"]: title,
+      }),
+    };
+  } else {
+    return `/work/${slug}`;
+  }
+};
 
 export const CardProject = ({ project }) => {
   const isTouch = useIsTouchDevice();
@@ -22,20 +38,28 @@ export const CardProject = ({ project }) => {
 };
 
 const CardProjectMobile = ({ project }) => {
-  const { slug, img, logo } = project;
+  const { img, logo, logo_text } = project;
+  const [searchParams] = useSearchParams();
 
   return (
-    <Link to={`/work/${slug}`} className="pixel-card mobile">
+    <Link to={handleUrl(project, searchParams)} className="pixel-card mobile">
       <img src={img} alt="card-project" className="pixel-card__bg mobile" />
-      <div className="pixel-card__logo mobile">
-        <img src={logo} alt="" className="pixel-card__logo-image" />
+      <div
+        className={classNames("pixel-card__logo mobile", {
+          "pixel-card__logo--text": logo_text && !logo,
+        })}
+      >
+        {logo && <img src={logo} alt="" className="pixel-card__logo-image" />}
+        {logo_text && !logo && (
+          <h3 className="semiBold pixel-card__name">{logo_text}</h3>
+        )}
       </div>
     </Link>
   );
 };
 
 const CardProjectDesktop = ({ project }) => {
-  const { slug, img: srcBg, img_hover: srcBgZoomed, logo, type, title } = project;
+  const { img: srcBg, img_hover: srcBgZoomed, logo, logo_text } = project;
 
   const [pixelSize, setPixelSize] = useState(1);
   const [images, setImages] = useState([srcBg, srcBgZoomed]);
@@ -59,75 +83,40 @@ const CardProjectDesktop = ({ project }) => {
 
     setTimeout(() => {
       setPixelSize(1);
-      setImageIndex(1); 
+      setImageIndex(1);
     }, 400);
   };
 
   const animLeaveStepsHandler = () => {
     setPixelSize(22);
-    
+
     setTimeout(() => {
       setPixelSize(16);
     }, 200);
-    
+
     setTimeout(() => {
       setPixelSize(1);
-      setImageIndex(0); 
+      setImageIndex(0);
     }, 400);
   };
 
-  const handleUrl = () => {
-    if (type === "page") {
-      return `/work/${slug}`
-    } else if (type === "popUp") {
-      return {
-        search: getSearchWith(searchParams, { ["popUpVideo"]: project?.videoUrl, ["name"]: title })
-      }
-    }
-  }
-
   return (
     <Link
-      // to={`/work/${slug}`}
-      to={handleUrl()}
+      to={handleUrl(project, searchParams)}
       className="pixel-card"
       onMouseEnter={() => animEnterStepsHandler()}
       onMouseLeave={() => animLeaveStepsHandler()}
     >
       <Pixelize imageUrl={images[imageIndex]} pixelSize={pixelSize} />
-      <div className="pixel-card__logo">
-        {logo.type === "logo" && (
-          <img src={logo.url} alt="" className="pixel-card__logo-image" />
+      <div
+        className={classNames("pixel-card__logo", {
+          "pixel-card__logo--text": logo_text && !logo,
+        })}
+      >
+        {logo && <img src={logo} alt="" className="pixel-card__logo-image" />}
+        {logo_text && !logo && (
+          <h3 className="semiBold pixel-card__name">{logo_text}</h3>
         )}
-        {logo.type === "text" && (
-          <h2 className="semiBold">{logo.text}</h2>
-        )}
-      </div>
-    </Link>
-  );
-};
-
-const CardProjectDesktop1 = ({ project }) => {
-  const { slug, img: srcBg, img_hover: srcBgZoomed, logo } = project;
-
-  const [images, setImages] = useState([srcBg, srcBgZoomed]);
-
-  useEffect(() => {
-    const preloadImage = new Image();
-    preloadImage.src = srcBgZoomed;
-    preloadImage.onload = () => {
-      setImages([srcBg, preloadImage.src]);
-    };
-  }, [srcBg, srcBgZoomed]);
-
-  return (
-    <Link className="pixel-card pixel-card-new" to={`/work/${slug}`}>
-      <Pixelify src={images[0]} pixelSize={0} />
-      <Pixelify src={images[0]} pixelSize={18} />
-      <Pixelify src={images[0]} pixelSize={28} />
-      <Pixelify src={images[1]} pixelSize={0} />
-      <div className="pixel-card__logo">
-        <img src={logo} alt="" className="pixel-card__logo-image" />
       </div>
     </Link>
   );

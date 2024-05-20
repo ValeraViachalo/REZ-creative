@@ -6,15 +6,15 @@
   .splide {
     padding: 0 !important;
 
-    &__track {
-      @include forVerticalTablet {
-        display: none !important;
-      }
+    // &__track {
+    //   @include forVerticalTablet {
+    //     display: none !important;
+    //   }
       
-      @include forMobile {
-        display: none !important;
-      }
-    }
+    //   @include forMobile {
+    //     display: none !important;
+    //   }
+    // }
 
     .slide__image {
       opacity: 0;
@@ -162,6 +162,12 @@
         margin-top: 14  vw;
       }
     }
+
+    &--empty-description {
+      @include forDesktop {
+        margin-bottom: 3vw;
+      }
+    }
   }
 
   .slider-free {
@@ -192,6 +198,10 @@
     &__image {
       width: VW(360, $tablet);
       height: VW(315, $tablet);
+      user-select: none;
+      position: relative;
+      z-index: -1;
+      cursor: grab;
 
       &:nth-last-of-type(1) {
         margin-right: 5.2vw;

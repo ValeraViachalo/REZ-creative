@@ -16,3 +16,4 @@ export const URL_FORM_GENERAL =
   "https://app.rezcreative.com/wp-json/rez/v1/form/general-enquires";
 export const URL_FORM_APPLY =
   "https://app.rezcreative.com/wp-json/rez/v1/form/apply-now";
+export const URL_FOOTER = "https://app.rezcreative.com/wp-json/rez/v1/footer"

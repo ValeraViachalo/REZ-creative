@@ -2,6 +2,10 @@
 
 .related-works {
   margin: VW(170) 0 VW(120);
+  
+  @include forMobile {
+    margin: VW(70, $mobile) 0 VW(110, $mobile);
+  }
 
   &__title {
     margin-bottom: 4vw;

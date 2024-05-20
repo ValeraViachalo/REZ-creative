@@ -9,28 +9,35 @@ import { VideoPlay } from "@/components/VideoPlay/VideoPlay";
 export function ScreenShots() {
   const { data, isLoading } = useContext(DataContext);
 
+  console.log(data.media.videos);
+
   return (
     !isLoading && (
       <>
-        <div className="screenshots container">
-          {data.media?.screenshots_1 && (
+        {data.media?.screenshots_1 && (
+          <div className="screenshots container">
             <ScreenShotsImages images={data.media?.screenshots_1} />
-          )}
-        </div>
-        <div className="container works-trailer">
-          {data.media.video && (
-            <VideoPlay
-              linkUrl={data.media.video.link}
-              buttonText={data.media.video.play_button_text}
-            />
-          )}
-        </div>
-        <div className="screenshots container">
-          {data.media?.screenshots_2 && (
+          </div>
+        )}
+        {data.media.videos && (
+          <div className="container works-trailer">
+            {data.media.videos.map((curV, i) => (
+              <VideoPlay
+                linkUrl={curV.video}
+                buttonText={curV.play_button_text}
+                key={`works-trailer-video--${i}`}
+              />
+            ))}
+          </div>
+        )}
+        {data.media?.screenshots_2 && (
+          <div className="screenshots container">
             <ScreenShotsImages images={data.media?.screenshots_2} />
-          )}
-        </div>
-        {data.media.full_screen_image && (<FullScreenShot image={data.media.full_screen_image} />)}
+          </div>
+        )}
+        {data.media.full_screen_image && (
+          <FullScreenShot image={data.media.full_screen_image} />
+        )}
       </>
     )
   );

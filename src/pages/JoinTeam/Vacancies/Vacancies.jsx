@@ -91,9 +91,11 @@ const Vacancy = ({ vacancy, index }) => {
           <span>{deadline.month_and_year}</span>
         </p>
         <div className="vacancy__deadline vacancy__deadline-wrapper">
-          <p className="shadow vacancy__deadline-title" data-only-mobile>
-            Deadline
-          </p>
+          {deadline.day && deadline.month_and_year && (
+            <p className="shadow vacancy__deadline-title" data-only-mobile>
+              Deadline
+            </p>
+          )}
           <p
             className="upperCase semiBold vacancy__deadline"
             data-not-desktop--flex

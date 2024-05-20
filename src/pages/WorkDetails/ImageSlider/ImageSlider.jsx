@@ -5,12 +5,21 @@ import "./ImageSlider.scss";
 import "@splidejs/react-splide/css/core";
 import { DataContext } from "@/helpers/dataHelpers/dataProvider";
 import { Pixelize } from "@/components/Pixelize/Pixelize";
+import { useDrag } from "react-use-gesture";
+import classNames from "classnames";
 
 export const ImageSlider = () => {
   const { data, isLoading } = useContext(DataContext);
+  const sliderMobileRef = useRef();
+
+  const bind = useDrag(({ down, movement: [mx] }) => {
+    const slider = sliderMobileRef.current;
+    slider.scrollLeft = slider.scrollLeft - mx / 10;
+  });
 
   return (
-    !isLoading && data.slider && (
+    !isLoading &&
+    data.slider && (
       <div className="works-slider">
         <Splide
           options={{
@@ -34,23 +43,24 @@ export const ImageSlider = () => {
           }}
           hasTrack={false}
         >
-          <SplideTrack>
+          <SplideTrack 
+          data-only-desktop
+          >
             {data.slider.map((currImg, index) => (
               <SplideSlide key={index} className="slide">
-                <img
-                  src={currImg}
-                  className="slide__image"
-                />
+                <img src={currImg} className="slide__image" />
                 <Pixelize imageUrl={currImg} pixelSize={18} />
               </SplideSlide>
             ))}
           </SplideTrack>
-          <div className="slider-free" data-not-desktop--flex>
+          <div className="slider-free" data-not-desktop--flex {...bind()} ref={sliderMobileRef}>
             {data.slider.map((currImg, i) => (
               <img src={currImg} alt="slider" className="slider-free__image" />
             ))}
           </div>
-          <div className="bottom container">
+          <div className={classNames("bottom container", {
+            "bottom--empty-description": !data?.media?.title && !data?.media?.text
+          })}>
             <div className="drager-controller" data-only-desktop--flex>
               <p>Drag slider</p>
               <div className="drager-controller__arrows">
@@ -84,10 +94,12 @@ export const ImageSlider = () => {
                 </div>
               </div>
             </div>
-            <div className="slider-description">
-              <p className="semiBold">{data?.media?.title}</p>
-              <p>{data?.media?.text}</p>
-            </div>
+            {data?.media?.title && data?.media?.text && (
+              <div className="slider-description">
+                <p className="semiBold">{data?.media?.title}</p>
+                <p>{data?.media?.text}</p>
+              </div>
+            )}
           </div>
         </Splide>
       </div>
