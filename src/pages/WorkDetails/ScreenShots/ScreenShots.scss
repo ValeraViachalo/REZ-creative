@@ -44,11 +44,17 @@
 }
 
 .works-trailer {
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+  
   @include forVerticalTablet {
     margin: 5vw 0;
+    gap: 5vw;
   }
-
+  
   @include forMobile {
+    gap: 3vw;
     margin-top: 5vw;
   }
 }

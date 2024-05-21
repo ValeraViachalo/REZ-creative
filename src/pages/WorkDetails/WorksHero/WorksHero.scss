@@ -29,10 +29,17 @@
     backdrop-filter: blur(2vw);
     -webkit-backdrop-filter: blur(2vw);
     width: 100%;
-    // min-height: 20vh;
     overflow: hidden;
     padding: 5vw 0 3vw;
     position: relative;
+
+    @include forVerticalTablet {
+      padding: 8vw 0 5vw;
+    }
+    
+    @include forHorizontalTablet {
+      padding: 6vw 0 3vw;
+    }
 
     @include forMobile {
       padding: VW(90, $mobile) 0 VW(30, $mobile);

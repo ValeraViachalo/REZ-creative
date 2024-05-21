@@ -143,7 +143,7 @@ const WorksHeroPrepered = () => {
     !isLoading && (
       <section className="works-hero works-hero--loader">
         <div className="top">
-          <h1 className="super-text top__title">
+          <h1 className="top__title">
             {data.main.title}
           </h1>
         </div>

@@ -27,7 +27,7 @@ function App() {
     <QueryClientProvider client={queryC}>
       <ScrollProvider>
         <LoaderProvider>
-          {/* <Loader /> */}
+          <Loader />
           <Root />
         </LoaderProvider>
       </ScrollProvider>
