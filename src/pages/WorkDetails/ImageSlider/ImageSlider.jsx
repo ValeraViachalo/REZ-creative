@@ -19,7 +19,7 @@ export const ImageSlider = () => {
 
   return (
     !isLoading &&
-    data.slider && (
+    (
       <div className="works-slider">
         <Splide
           options={{
@@ -46,7 +46,7 @@ export const ImageSlider = () => {
           <SplideTrack 
           data-only-desktop
           >
-            {data.slider.map((currImg, index) => (
+            {data.slider && data.slider.map((currImg, index) => (
               <SplideSlide key={index} className="slide">
                 <img src={currImg} className="slide__image" />
                 <Pixelize imageUrl={currImg} pixelSize={18} />
@@ -54,50 +54,52 @@ export const ImageSlider = () => {
             ))}
           </SplideTrack>
           <div className="slider-free" data-not-desktop--flex {...bind()} ref={sliderMobileRef}>
-            {data.slider.map((currImg, i) => (
+            {data.slider && data.slider.map((currImg, i) => (
               <img src={currImg} alt="slider" className="slider-free__image" />
             ))}
           </div>
           <div className={classNames("bottom container", {
             "bottom--empty-description": !data?.media?.title && !data?.media?.text
           })}>
-            <div className="drager-controller" data-only-desktop--flex>
-              <p>Drag slider</p>
-              <div className="drager-controller__arrows">
-                <div className="left">
-                  <svg
-                    viewBox="0 0 71 49"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M14.069 27.668L33.2246 43.734L28.2666 48.766L-0.00138855 24.494L28.3406 0L33.2246 5.55L14.9177 20.668H70.1367V27.668H14.069Z"
-                      fill="#F5F5F5"
-                    />
-                  </svg>
-                </div>
-                <div className="right">
-                  <svg
-                    viewBox="0 0 71 49"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M56.0678 27.668L36.9121 43.734L41.8701 48.766L70.1381 24.494L41.7961 0L36.9121 5.55L55.219 20.668H0V27.668H56.0678Z"
-                      fill="#F5F5F5"
-                    />
-                  </svg>
+            {data.slider && (
+              <div className="drager-controller" data-only-desktop--flex>
+                <p>Drag slider</p>
+                <div className="drager-controller__arrows">
+                  <div className="left">
+                    <svg
+                      viewBox="0 0 71 49"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M14.069 27.668L33.2246 43.734L28.2666 48.766L-0.00138855 24.494L28.3406 0L33.2246 5.55L14.9177 20.668H70.1367V27.668H14.069Z"
+                        fill="#F5F5F5"
+                      />
+                    </svg>
+                  </div>
+                  <div className="right">
+                    <svg
+                      viewBox="0 0 71 49"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M56.0678 27.668L36.9121 43.734L41.8701 48.766L70.1381 24.494L41.7961 0L36.9121 5.55L55.219 20.668H0V27.668H56.0678Z"
+                        fill="#F5F5F5"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
             {data?.media?.title && data?.media?.text && (
               <div className="slider-description">
                 <p className="semiBold">{data?.media?.title}</p>
-                <p>{data?.media?.text}</p>
+                <p dangerouslySetInnerHTML={{ __html: data?.media?.text }}/>
               </div>
             )}
           </div>

@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { VideoPlay } from "@/components/VideoPlay/VideoPlay";
+import classNames from "classnames";
 
 export function ScreenShots() {
   const { data, isLoading } = useContext(DataContext);
@@ -20,7 +21,9 @@ export function ScreenShots() {
           </div>
         )}
         {data.media.videos && (
-          <div className="container works-trailer">
+          <div className={classNames("container works-trailer", {
+            "works-trailer--spacing": !data.media?.screenshots_1
+          })}>
             {data.media.videos.map((curV, i) => (
               <VideoPlay
                 linkUrl={curV.video}
