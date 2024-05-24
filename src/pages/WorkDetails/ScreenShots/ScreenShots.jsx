@@ -10,8 +10,6 @@ import classNames from "classnames";
 export function ScreenShots() {
   const { data, isLoading } = useContext(DataContext);
 
-  console.log(data.media.videos);
-
   return (
     !isLoading && (
       <>
@@ -21,9 +19,11 @@ export function ScreenShots() {
           </div>
         )}
         {data.media.videos && (
-          <div className={classNames("container works-trailer", {
-            "works-trailer--spacing": !data.media?.screenshots_1
-          })}>
+          <div
+            className={classNames("container works-trailer", {
+              "works-trailer--spacing": !data.media?.screenshots_1,
+            })}
+          >
             {data.media.videos.map((curV, i) => (
               <VideoPlay
                 linkUrl={curV.video}
@@ -35,6 +35,12 @@ export function ScreenShots() {
         )}
         {data.media?.screenshots_2 && (
           <div className="screenshots container">
+            {data.media?.text_2 && (
+              <span
+                className="screenshots__text"
+                dangerouslySetInnerHTML={{ __html: data.media?.text_2 }}
+              />
+            )}
             <ScreenShotsImages images={data.media?.screenshots_2} />
           </div>
         )}

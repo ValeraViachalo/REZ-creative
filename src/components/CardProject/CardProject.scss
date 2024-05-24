@@ -92,6 +92,7 @@
 
     &--text {
       height: auto !important;
+      text-wrap: balance;
 
       @include forVerticalTablet {
         display: none;
@@ -104,8 +105,9 @@
   }
 
   &__name {
-    text-wrap: pretty;
+    text-wrap: wrap;
     text-align: center;
+    width: 100%;
   }
 }
 
