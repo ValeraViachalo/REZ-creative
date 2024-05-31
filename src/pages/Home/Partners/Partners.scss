@@ -6,6 +6,11 @@
   width: 100vw;
   overflow: hidden;
 
+  &__title {
+    text-align: center;
+    margin: VW(10) 0 VW(50);
+  }
+
   @include forVerticalTablet() {
     margin-top: 20vw 0 5vw;
   }

@@ -8,11 +8,14 @@ import Partners from "./Partners/Partners";
 import { PageLayout } from "@/components/PageLayout/PageLayout";
 import { DataProvider } from "@/helpers/dataHelpers/dataProvider";
 import { URL_HOME_DATA } from "@/helpers/dataHelpers/linksAPI";
+import { useDocumentTitle } from "@/helpers/useDocumentTitle";
 
 export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useDocumentTitle('REZ Creative');
 
   return (
     <DataProvider url={URL_HOME_DATA}>

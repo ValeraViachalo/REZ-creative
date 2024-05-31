@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from "react";
 import "@/styles/dynamickHtml.scss";
 import { Footer } from "@/components/Footer/Footer";
 import { PageLayout } from "@/components/PageLayout/PageLayout";
+import { useDocumentTitle } from "@/helpers/useDocumentTitle";
 
 export default function Terms() {
   useEffect(() => {
@@ -12,18 +13,20 @@ export default function Terms() {
   }, []);
 
   return (
-      <DataProvider url={URL_TERMS}>
-    <PageLayout>
+    <DataProvider url={URL_TERMS}>
+      <PageLayout>
         <main className="dynamickPage container">
           <BodyTerms />
         </main>
-    </PageLayout>
-      </DataProvider>
+      </PageLayout>
+    </DataProvider>
   );
 }
 
 const BodyTerms = () => {
   const { data, isLoading } = useContext(DataContext);
+
+  useDocumentTitle(data?.hero?.title && `${data?.hero?.title} | REZ Creative`);
 
   return (
     <section>

@@ -46,6 +46,7 @@ export default function Partners() {
   return (
     !isLoading && (
       <section className="partners">
+      <h3 className="semiBold partners__title">Our clients</h3>
         <Splide
           options={{
             type  : 'loop',

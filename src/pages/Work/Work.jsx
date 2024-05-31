@@ -18,11 +18,14 @@ import gsap from "gsap";
 import { LoaderContext } from "@/components/Loader/LoaderContext";
 import { ScrollContext } from "@/helpers/scrollContext";
 import { PopUpVideo } from "@/components/PopUpVideo/PopUpVideo";
+import { useDocumentTitle } from "@/helpers/useDocumentTitle";
 
 export default function Work() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useDocumentTitle('Work | REZ Creative');
 
   const { loaderFinished } = useContext(LoaderContext);
 

@@ -1,7 +1,7 @@
 import { PageLayout } from "@/components/PageLayout/PageLayout";
-import { DataProvider } from "@/helpers/dataHelpers/dataProvider";
+import { DataContext, DataProvider } from "@/helpers/dataHelpers/dataProvider";
 import { URL_WORKS_DETAILS } from "@/helpers/dataHelpers/linksAPI";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import WorksHero from "./WorksHero/WorksHero";
 import WorkDescriptions from "./WorkDescriptions/WorkDescriptions";
@@ -10,6 +10,7 @@ import { ScreenShots } from "./ScreenShots/ScreenShots";
 import RelatedWorks from "./RelatedWorks/RelatedWorks";
 
 import './WorkDetails.scss';
+import { useDocumentTitle } from "@/helpers/useDocumentTitle";
 
 export default function WorkDetails() {
   const [urlDetails, setUrlDetails] = useState();
@@ -26,6 +27,7 @@ export default function WorkDetails() {
   return (
     <DataProvider url={urlDetails}>
       <PageLayout>
+        <Title />
         <main className="work-details">
           <WorksHero />
           <WorkDescriptions />
@@ -36,4 +38,10 @@ export default function WorkDetails() {
       </PageLayout>
     </DataProvider>
   );
+}
+
+const Title = () => {
+  const { data, isLoading } = useContext(DataContext);
+
+  useDocumentTitle(data.main?.title ? `${data.main.title} | REZ Creative` : document.title);
 }

@@ -9,11 +9,14 @@ import Team from "./Team/Team";
 import CTA from "./CTA/CTA";
 import { DataContext, DataProvider } from "@/helpers/dataHelpers/dataProvider";
 import { URL_ABOUT } from "@/helpers/dataHelpers/linksAPI";
+import { useDocumentTitle } from "@/helpers/useDocumentTitle";
 
 export default function About() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useDocumentTitle('About us | REZ Creative');
 
   return (
     <DataProvider url={URL_ABOUT}>

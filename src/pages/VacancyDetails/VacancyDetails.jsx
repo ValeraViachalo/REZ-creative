@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import "@/styles/global.scss";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useDocumentTitle } from "@/helpers/useDocumentTitle";
 
 export default function VacancyDetails() {
   const [urlDetails, setUrlDetails] = useState();
@@ -32,6 +33,8 @@ export default function VacancyDetails() {
 
 const VacancyDetailBody = () => {
   const { data, isLoading } = useContext(DataContext);
+
+  useDocumentTitle(data?.hero?.title && `${data?.hero?.title} | REZ Creative`);
 
   useEffect(() => {
     ScrollTrigger.refresh();
