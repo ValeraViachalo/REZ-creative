@@ -1,0 +1,164 @@
+{
+  "page": [
+    {
+      "type": "hero",
+      "data": {
+        "image": "https://app.rezcreative.com/wp-content/uploads/2024/04/1-1.webp",
+        "title": "ATTACK ON TITAN x DEAD BY DAYLIGHT"
+      }
+    },
+    {
+      "type": "text_left",
+      "data": {
+        "descriptions": "We are really proud of this collaboration with Attack on Titan! For this trailer, we got inspired by the show's opening credits, giving hommage to iconic sequences and adapting them to the game characters.",
+        "info_list": [
+          {
+            "title": "CLIENT",
+            "text": "BEHAVIOUR INTERACTIVE, KODANSHA"
+          },
+          {
+            "title": "SKILLS",
+            "text": "CGI, 3D, 2D, COMPOSITING, EDITING, KEY ART, ILLUSTRATION"
+          }
+        ]
+      }
+    },
+    {
+      "type": "slider_with_mini_pictures",
+      "data": [
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-60.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-61.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-62.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-58.webp"
+      ]
+    },
+    {
+      "type": "textCenter",
+      "data": {
+        "title": "An hommage to the iconic opening credits",
+        "text": "Working with the in-game characters assets, we carefully planned every shot to be a love letter to the fans of the beloved tv show while respectfully following the DBD brand guidelines."
+      }
+    },
+    {
+      "type": "screenshots_one_by_one",
+      "data": {
+        "screenshots": [
+          "https://app.rezcreative.com/wp-content/uploads/2024/04/image-69.png",
+          "https://app.rezcreative.com/wp-content/uploads/2024/04/image-70.png"
+        ]
+      }
+    },
+    {
+      "type": "videos",
+      "data": [
+        {
+          "video": "https://vimeo.com/731408077",
+          "play_button_text": "Play trailer"
+        }
+      ]
+    },
+    {
+      "type": "slider_with_mini_pictures",
+      "data": [
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-60.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-61.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-62.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-58.webp"
+      ]
+    },
+    {
+      "type": "screenshots_one_by_one-and-text",
+      "data": {
+        "text": "Additionally, we've carefully re-created the iconic backgrounds to get that AoT look and feel. We are quite pumped by the result.",
+        "screenshots": [
+          "https://app.rezcreative.com/wp-content/uploads/2024/04/image-54.png",
+          "https://app.rezcreative.com/wp-content/uploads/2024/04/image-59.png"
+        ]
+      }
+    },
+    {
+      "type": "full_screen_image",
+      "data": "https://app.rezcreative.com/wp-content/uploads/2024/04/image-55.png"
+    },
+    {
+      "type": "screenshots_one_by_one-and-text",
+      "data": {
+        "text": "Additionally, we've carefully re-created the iconic backgrounds to get that AoT look and feel. We are quite pumped by the result.",
+        "screenshots": [
+          "https://app.rezcreative.com/wp-content/uploads/2024/05/image-61.webp",
+          "https://app.rezcreative.com/wp-content/uploads/2024/04/image-59.png"
+        ]
+      }
+    },
+    {
+      "type": "related_projects",
+      "data": {
+        "title": "Related projects",
+        "projects": [
+          {
+            "id": 695,
+            "title": "ALICE IN WONDERLAND x DEAD BY DAYLIGHT",
+            "slug": "alice-in-wonderland-x-dead-by-daylight",
+            "img": "https://app.rezcreative.com/wp-content/uploads/2024/05/Alice_1.jpg",
+            "img_hover": "https://app.rezcreative.com/wp-content/uploads/2024/05/Untitled-1-Recovered.jpg",
+            "logo": false,
+            "logo_text": "ALICE IN WONDERLAND x DEAD BY DAYLIGHT",
+            "video_for_popup": ""
+          },
+          {
+            "id": 709,
+            "title": "ALIEN x DEAD BY DAYLIGHT",
+            "slug": "alien-x-dead-by-daylight",
+            "img": "https://app.rezcreative.com/wp-content/uploads/2024/05/ALIEN.jpg",
+            "img_hover": "https://app.rezcreative.com/wp-content/uploads/2024/05/Alien_Close.jpg",
+            "logo": false,
+            "logo_text": "ALIEN x DEAD BY DAYLIGHT",
+            "video_for_popup": ""
+          },
+          {
+            "id": 433,
+            "title": "SLIPKNOT x DEAD BY DAYLIGHT",
+            "slug": "slipknot",
+            "img": "https://app.rezcreative.com/wp-content/uploads/2024/05/SLIPKNOT_3.jpg",
+            "img_hover": "https://app.rezcreative.com/wp-content/uploads/2024/05/SLIPKNOT_2.jpg",
+            "logo": false,
+            "logo_text": "SLIPKNOT x DEAD BY DAYLIGHT",
+            "video_for_popup": ""
+          }
+        ]
+      }
+    }
+  ],
+  "form": {
+    "title": "Say hello",
+    "name_placeholder": "Hello! Type your name",
+    "email_placeholder": "Email",
+    "message_placeholder": "Tell us about your project",
+    "submit_button_text": "SUBMIT",
+    "message_after_form_submit": "\u003Ch2\u003EThank you!\u003C/h2\u003E\n\u003Ch2\u003EWe’re happy to receive your application.\u003C/h2\u003E\n\u003Ch2\u003EWe’ll reach out to you in 1-3 working days via email\u003C/h2\u003E\n",
+    "agreement_text": "By clicking next, you agree to our",
+    "terms_link": "/terms",
+    "terms_link_text": "Terms and Conditions"
+  },
+  "socials": {
+    "title": "Follow us",
+    "links": [
+      {
+        "icon": "https://app.rezcreative.com/wp-content/uploads/2024/04/Vimeo.svg",
+        "link": "https://vimeo.com/rezcreative"
+      },
+      {
+        "icon": "https://app.rezcreative.com/wp-content/uploads/2024/04/Instagram.svg",
+        "link": "https://www.instagram.com/rezcreative/"
+      },
+      {
+        "icon": "https://app.rezcreative.com/wp-content/uploads/2024/04/FB.svg",
+        "link": "https://www.facebook.com/Rezcreative/"
+      },
+      {
+        "icon": "https://app.rezcreative.com/wp-content/uploads/2024/04/Linkedin.svg",
+        "link": "https://www.linkedin.com/company/rez-creative/?originalSubdomain=ca"
+      }
+    ]
+  }
+}

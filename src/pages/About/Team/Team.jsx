@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import "./Team.scss";
-import teamData from "@/data/team.json";
 import { DataContext } from "@/helpers/dataHelpers/dataProvider";
 
 export default function Team() {

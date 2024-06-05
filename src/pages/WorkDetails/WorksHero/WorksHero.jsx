@@ -12,8 +12,8 @@ const transition = {
   delay: 0.85,
 }
 
-export default function WorksHero() {
-  const { data, isLoading } = useContext(DataContext);
+export default function WorksHero({ data }) {
+  const { isLoading } = useContext(DataContext);
   const { loaderFinished } = useContext(LoaderContext);
 
   const backgroundRef = useRef();
@@ -99,10 +99,10 @@ export default function WorksHero() {
       <section className="works-hero">
         <div className="top" ref={topRef}>
           <h1 className="top__title" ref={titleRef}>
-            {data.main.title}
+            {data.title}
           </h1>
         </div>
-        <img src={data.main.image} alt="works-hero" className="works-hero__bg" ref={backgroundRef}/>
+        <img src={data.image} alt="works-hero" className="works-hero__bg" ref={backgroundRef}/>
       </section>
     )
   );

@@ -4,17 +4,15 @@ import React, { useContext } from "react";
 
 import './RelatedWorks.scss';
 
-export default function RelatedWorks() {
-  const { data, isLoading } = useContext(DataContext);
+export default function RelatedWorks({ data }) {
 
   return (
-    !isLoading &&
-    data.related_projects.projects.length !== 0 && (
+    data.length !== 0 && (
       <section className="related-works container">
-        <h1 className="related-works__title">{data.related_projects.title}</h1>
+        <h1 className="related-works__title">{data.title}</h1>
 
         <ul className="works__list">
-          {data.related_projects.projects.map((currWorks, i) => (
+          {data.projects.map((currWorks, i) => (
             <CardProject
               project={currWorks}
               key={i}

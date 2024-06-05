@@ -1,17 +1,15 @@
 import React, { useContext } from 'react'
 
 import './WorkDescriptions.scss';
-import { DataContext } from '@/helpers/dataHelpers/dataProvider';
 
-export default function WorkDescriptions() {
-  const { data, isLoading } = useContext(DataContext);
+export default function WorkDescriptions({ data }) {
 
-  return !isLoading && data.main && (
+  return data && (
     <section className='container work-descriptions'>
-      <p className="work-descriptions__descriptions">{data.main.descriptions}</p>
+      <p className="work-descriptions__descriptions">{data.descriptions}</p>
 
       <div className="info-list__wrapper">
-        {data.main.info_list && data.main.info_list.map((currList, i) => (
+        {data.info_list && data.info_list.map((currList, i) => (
           <div className="info-list semiBold smallText" key={`${currList.title}--${i}`}>
             <p>{currList.title}</p>
             <p>{currList.text}</p>

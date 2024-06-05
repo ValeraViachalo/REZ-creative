@@ -3,7 +3,6 @@ import "./Vacancies.scss";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import vacanciesListData from "@/data/vacancies.json";
 import { useInView } from "react-intersection-observer";
 import { VacancyAnim } from "@/helpers/anim";
 import { useGSAP } from "@gsap/react";

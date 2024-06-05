@@ -7,48 +7,62 @@ import { ScrollTrigger } from "gsap/all";
 import { VideoPlay } from "@/components/VideoPlay/VideoPlay";
 import classNames from "classnames";
 
-export function ScreenShots() {
-  const { data, isLoading } = useContext(DataContext);
+// export function ScreenShots() {
+//   const { data, isLoading } = useContext(DataContext);
 
+//   return (
+//     !isLoading && (
+//       <>
+//         {data.media?.screenshots_1 && (
+//           <div className="screenshots container">
+//             <ScreenShotsImages images={data.media?.screenshots_1} />
+//           </div>
+//         )}
+//         {data.media.videos && (
+//           <div
+//             className={classNames("container works-trailer", {
+//               "works-trailer--spacing": !data.media?.screenshots_1,
+//             })}
+//           >
+//             {data.media.videos.map((curV, i) => (
+//               <VideoPlay
+//                 linkUrl={curV.video}
+//                 buttonText={curV.play_button_text}
+//                 key={`works-trailer-video--${i}`}
+//               />
+//             ))}
+//           </div>
+//         )}
+//         {data.media?.screenshots_2 && (
+//           <div className="screenshots container">
+//             {data.media?.text_2 && (
+//               <span
+//                 className="screenshots__text"
+//                 dangerouslySetInnerHTML={{ __html: data.media?.text_2 }}
+//               />
+//             )}
+//             <ScreenShotsImages images={data.media?.screenshots_2} />
+//           </div>
+//         )}
+//         {data.media.full_screen_image && (
+//           <FullScreenShot image={data.media.full_screen_image} />
+//         )}
+//       </>
+//     )
+//   );
+// }
+
+export function ScreenShots({ data }) {
   return (
-    !isLoading && (
-      <>
-        {data.media?.screenshots_1 && (
-          <div className="screenshots container">
-            <ScreenShotsImages images={data.media?.screenshots_1} />
-          </div>
-        )}
-        {data.media.videos && (
-          <div
-            className={classNames("container works-trailer", {
-              "works-trailer--spacing": !data.media?.screenshots_1,
-            })}
-          >
-            {data.media.videos.map((curV, i) => (
-              <VideoPlay
-                linkUrl={curV.video}
-                buttonText={curV.play_button_text}
-                key={`works-trailer-video--${i}`}
-              />
-            ))}
-          </div>
-        )}
-        {data.media?.screenshots_2 && (
-          <div className="screenshots container">
-            {data.media?.text_2 && (
-              <span
-                className="screenshots__text"
-                dangerouslySetInnerHTML={{ __html: data.media?.text_2 }}
-              />
-            )}
-            <ScreenShotsImages images={data.media?.screenshots_2} />
-          </div>
-        )}
-        {data.media.full_screen_image && (
-          <FullScreenShot image={data.media.full_screen_image} />
-        )}
-      </>
-    )
+    <div className="screenshots container">
+      {data?.text && (
+        <span
+          className="screenshots__text"
+          dangerouslySetInnerHTML={{ __html: data.text }}
+        />
+      )}
+      <ScreenShotsImages images={data.screenshots} />
+    </div>
   );
 }
 
@@ -85,7 +99,21 @@ const ScreenShotsImages = ({ images }) => {
   ));
 };
 
-const FullScreenShot = ({ image }) => {
+export const ProjectsVideo = ({ data }) => {
+  return (
+    <div className="container works-trailer">
+      {data.map((curV, i) => (
+        <VideoPlay
+          linkUrl={curV.video}
+          buttonText={curV.play_button_text}
+          key={`works-trailer-video--${i}`}
+        />
+      ))}
+    </div>
+  );
+};
+
+export const FullScreenShot = ({ image }) => {
   useGSAP(() => {
     gsap.to(".full-screenShot", {
       backgroundPositionY: "100%",
