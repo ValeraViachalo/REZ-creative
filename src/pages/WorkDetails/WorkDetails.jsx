@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import WorksHero from "./WorksHero/WorksHero";
 import WorkDescriptions from "./WorkDescriptions/WorkDescriptions";
 import { ImageSlider } from "./ImageSlider/ImageSlider";
-import { FullScreenShot, ProjectsVideo, ScreenShots } from "./ScreenShots/ScreenShots";
+import { FullScreenShot, ProjectsVideo, ScreenShots, ScreenShotsText } from "./ScreenShots/ScreenShots";
 import RelatedWorks from "./RelatedWorks/RelatedWorks";
 
 import "./WorkDetails.scss";
@@ -21,8 +21,7 @@ export default function WorkDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // setUrlDetails(URL_WORKS_DETAILS + pathWorks[2]);
-    setUrlDetails("/worksDetails.json");
+    setUrlDetails(URL_WORKS_DETAILS + pathWorks[2]);
   }, []);
 
   return (
@@ -38,24 +37,29 @@ export default function WorkDetails() {
 const Root = () => {
   const { data, isLoading } = useContext(DataContext);
 
-  const renderComponent = (section) => {
+  const renderComponent = (section, index) => {
     switch (section.type) {
       case 'hero':
-        return <WorksHero data={section.data}/>;
+        return (
+          <>
+            <WorksHero data={section.data} key={`work-details-secton-${section.type}-${index}`}/>
+            <Title title={section.data.title} />
+          </>
+        );
       case 'text_left':
-        return <WorkDescriptions data={section.data}/>;
+        return <WorkDescriptions data={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       case 'slider_with_mini_pictures':
-        return <ImageSlider data={section.data}/>;
+        return <ImageSlider data={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       case 'screenshots_one_by_one':
-        return <ScreenShots data={section.data}/>;
+        return <ScreenShots data={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       case 'screenshots_one_by_one-and-text':
-        return <ScreenShots data={section.data}/>;
+        return <ScreenShotsText data={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       case 'full_screen_image':
-        return <FullScreenShot image={section.data}/>;
+        return <FullScreenShot image={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       case 'videos':
-        return <ProjectsVideo data={section.data}/>;
+        return <ProjectsVideo data={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       case 'related_projects':
-        return <RelatedWorks data={section.data}/>;
+        return <RelatedWorks data={section.data} key={`work-details-secton-${section.type}-${index}`}/>;
       default:
         return null;
     }
@@ -63,15 +67,14 @@ const Root = () => {
 
   return (
     <main className="work-details">
-      {data.page.map((section) => renderComponent(section))}
+      {data.page.map((section, i) => renderComponent(section, i))}
     </main>
   );
 };
 
-const Title = () => {
-  const { data, isLoading } = useContext(DataContext);
+const Title = ({ title }) => {
 
   useDocumentTitle(
-    data.hero?.title ? `${data.hero.title} | REZ Creative` : document.title
+    title ? `${title} | REZ Creative` : document.title
   );
 };

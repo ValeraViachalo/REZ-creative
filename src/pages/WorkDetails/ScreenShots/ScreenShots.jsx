@@ -1,60 +1,23 @@
-import React, { useContext, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ScreenShots.scss";
-import { DataContext } from "@/helpers/dataHelpers/dataProvider";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { VideoPlay } from "@/components/VideoPlay/VideoPlay";
 import classNames from "classnames";
-
-// export function ScreenShots() {
-//   const { data, isLoading } = useContext(DataContext);
-
-//   return (
-//     !isLoading && (
-//       <>
-//         {data.media?.screenshots_1 && (
-//           <div className="screenshots container">
-//             <ScreenShotsImages images={data.media?.screenshots_1} />
-//           </div>
-//         )}
-//         {data.media.videos && (
-//           <div
-//             className={classNames("container works-trailer", {
-//               "works-trailer--spacing": !data.media?.screenshots_1,
-//             })}
-//           >
-//             {data.media.videos.map((curV, i) => (
-//               <VideoPlay
-//                 linkUrl={curV.video}
-//                 buttonText={curV.play_button_text}
-//                 key={`works-trailer-video--${i}`}
-//               />
-//             ))}
-//           </div>
-//         )}
-//         {data.media?.screenshots_2 && (
-//           <div className="screenshots container">
-//             {data.media?.text_2 && (
-//               <span
-//                 className="screenshots__text"
-//                 dangerouslySetInnerHTML={{ __html: data.media?.text_2 }}
-//               />
-//             )}
-//             <ScreenShotsImages images={data.media?.screenshots_2} />
-//           </div>
-//         )}
-//         {data.media.full_screen_image && (
-//           <FullScreenShot image={data.media.full_screen_image} />
-//         )}
-//       </>
-//     )
-//   );
-// }
+import ReactPlayer from "react-player";
+import LazyLoad from "react-lazyload";
 
 export function ScreenShots({ data }) {
   return (
     <div className="screenshots container">
+      <ScreenShotsImages images={data.screenshots} />
+    </div>
+  );
+}
+
+export function ScreenShotsText({ data }) {
+  return (
+    <div className="screenshots screenshots--text container">
       {data?.text && (
         <span
           className="screenshots__text"
@@ -89,47 +52,92 @@ const ScreenShotsImages = ({ images }) => {
 
   return images.map((currImg, i) => (
     <div className="screenshots__image-wrapper" key={`works-${currImg}--${i}`}>
-      <img
-        src={currImg}
-        alt="screenshot"
-        className="screenshots__image"
+      <div
+        className="screenshots__image-animation"
         ref={(img) => imageRef.current.push(img)}
-      />
+      >
+        <LazyLoad offset={window.innerHeight}>
+          <img src={currImg} alt="screenshot" className="screenshots__image" />
+        </LazyLoad>
+      </div>
     </div>
   ));
 };
 
 export const ProjectsVideo = ({ data }) => {
+  const [isStarted, setIsStarted] = useState(false);
+
   return (
-    <div className="container works-trailer">
-      {data.map((curV, i) => (
-        <VideoPlay
-          linkUrl={curV.video}
-          buttonText={curV.play_button_text}
-          key={`works-trailer-video--${i}`}
+    <div className="container works-trailer video-play-wrapper">
+      <div
+        className={classNames("video-play", {
+          ["video-play--playing"]: isStarted,
+        })}
+      >
+        <ReactPlayer
+          controls={true}
+          url={data.video}
+          playing={isStarted}
+          onPause={() => setIsStarted(false)}
+          wrapper="video-play-wrapper"
         />
-      ))}
+      </div>
+      {!isStarted && (
+        <div
+          className="lines works-trailer__play-btn-wrapper"
+          onClick={() => setIsStarted(true)}
+        >
+          <svg
+            viewBox="0 0 26 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="works-trailer__play-btn"
+          >
+            <path
+              d="M26 16L-1.37333e-06 32L0 -1.15754e-06L26 16Z"
+              fill="black"
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
 };
 
 export const FullScreenShot = ({ image }) => {
-  useGSAP(() => {
-    gsap.to(".full-screenShot", {
-      backgroundPositionY: "100%",
-      scrollTrigger: {
-        trigger: ".full-screenShot",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-  });
+  const screenShotRef = useRef(null);
+  const screenShotRefWrapper = useRef(null);
+
+  useEffect(() => {
+    if (screenShotRef.current) {
+      gsap.fromTo(
+        screenShotRef.current,
+        {
+          yPercent: -30,
+        },
+        {
+          yPercent: 10,
+          scrollTrigger: {
+            trigger: screenShotRefWrapper.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }
+  }, [screenShotRef.current, screenShotRefWrapper.current]);
 
   return (
-    <div
-      className="full-screenShot"
-      style={{ backgroundImage: `url(${image})` }}
-    />
+    <div className="full-screenShot__wrapper" ref={screenShotRefWrapper}>
+      <div className="full-screenShot__anim-wrapper" ref={screenShotRef}>
+        <LazyLoad offset={window.innerHeight}>
+          <div
+            className="full-screenShot"
+            style={{ backgroundImage: `url(${image})` }}
+          />
+        </LazyLoad>
+      </div>
+    </div>
   );
 };

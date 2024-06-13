@@ -1,7 +1,7 @@
 @import "/src/styles/global.scss";
 
 .works-slider {
-  margin-top: 14vw;
+  margin-top: VW(110);
 
   .splide {
     padding: 0 !important;
@@ -159,26 +159,26 @@
         display: flex;
         grid-column: 1/13;
         gap: 4vw;
-        margin-top: 14  vw;
+        margin-top: 14vw;
       }
     }
 
-    &--empty-description {
-      @include forDesktop {
-        margin-bottom: 3vw;
-      }
-    }
+    // &--empty-description {
+    //   @include forDesktop {
+    //     margin-bottom: 3vw;
+    //   }
+    // }
   }
 
   .slider-free {
     width: 100vw;
     overflow: scroll;
-    padding: 4vw 0;
+    padding-bottom: 4vw;
     gap: 1vw;
-    margin-bottom: 8vw;
+    margin-top: VW(80, $tablet);
     
     @include forMobile {
-      margin-bottom: 14vw;
+      margin-top: VW(80, $mobile);
     }
 
     &::-webkit-scrollbar {

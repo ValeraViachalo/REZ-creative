@@ -2,13 +2,17 @@
 
 .work-descriptions {
   @include grid();
-  margin-top: 2vw;
+  margin-top: VW(60);
 
-  @include forMobile {
+  @include forVerticalTablet {
+    margin-top: VW(40, $tablet);
+    }
+    
+    @include forMobile {
     display: flex;
-    margin-top: 10vw;
-    flex-direction: column;
-    row-gap: 12vw;
+    margin-top: VW(20, $mobile);
+    flex-direction: column-reverse;
+    row-gap: VW(80, $mobile);
   }
 
   &__descriptions {
