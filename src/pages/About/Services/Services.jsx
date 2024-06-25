@@ -67,90 +67,96 @@ export default function Services() {
             <h1 className="super-text">{data?.service?.title}</h1>
 
             <div className="services-list__wrapper services-list__wrapper--top">
-              {data?.service?.list_1.map((curr, i) => (
-                <div
-                  className="services-list services-list--top"
-                  key={`services-list__${i}`}
-                >
-                  <p
-                    className={"semiBold services-list--top__title"}
-                    onClick={() => handlerClickedServ(i)}
+              {data?.service?.list_1 &&
+                data?.service?.list_1.map((curr, i) => (
+                  <div
+                    className="services-list services-list--top"
+                    key={`services-list__${i}`}
                   >
-                    {curr.title}
-                    <span
-                      className="services-list__icon"
-                      style={{ backgroundImage: `url(${curr.icon})` }}
-                    />
-                  </p>
-                  <ul className="services-list__list smallText shadow">
-                    {curr.numeric_list.map((currServ, index) => (
-                      <li key={`services-list__${i}-${index}-item`}>
-                        {currServ.text}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                    <p
+                      className={"semiBold services-list--top__title"}
+                      onClick={() => handlerClickedServ(i)}
+                    >
+                      {curr.title}
+                      <span
+                        className="services-list__icon"
+                        style={{ backgroundImage: `url(${curr.icon})` }}
+                      />
+                    </p>
+                    <ul className="services-list__list smallText shadow">
+                      {curr.numeric_list &&
+                        curr.numeric_list.map((currServ, index) => (
+                          <li key={`services-list__${i}-${index}-item`}>
+                            {currServ.text}
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                ))}
             </div>
             <div className="services-list__wrapper services-list__wrapper--mobile services-list__wrapper--top ">
-              {data?.service?.list_1.map((curr, i) => (
-                <div
-                  className="services-list services-list--top"
-                  key={`services-list__${i}`}
-                >
-                  <p
-                    className={mobileServicesClassHandler(i)}
-                    onClick={() => handlerClickedServ(i)}
+              {data?.service?.list_1 &&
+                data?.service?.list_1.map((curr, i) => (
+                  <div
+                    className="services-list services-list--top"
+                    key={`services-list__${i}`}
                   >
-                    {curr.title}
-                  <span
-                    className="services-list__icon"
-                    style={{ backgroundImage: `url(${curr.icon})` }}
-                  />
-                  </p>
-                  <AnimatePresence>
-                    <motion.ul
-                      variants={servicesListAnim.listPresence}
-                      initial="initial"
-                      animate={
-                        openService.isActive && openService.indexActive === i
-                          ? "animate"
-                          : "exit"
-                      }
-                      className="services-list__list smallText shadow"
+                    <p
+                      className={mobileServicesClassHandler(i)}
+                      onClick={() => handlerClickedServ(i)}
                     >
-                      {curr.numeric_list.map((currServ, index) => (
-                        <li key={`services-list__${i}-${index}-item`}>
-                          {currServ.text}
-                        </li>
-                      ))}
-                    </motion.ul>
-                  </AnimatePresence>
-                </div>
-              ))}
+                      {curr.title}
+                      <span
+                        className="services-list__icon"
+                        style={{ backgroundImage: `url(${curr.icon})` }}
+                      />
+                    </p>
+                    <AnimatePresence>
+                      <motion.ul
+                        variants={servicesListAnim.listPresence}
+                        initial="initial"
+                        animate={
+                          openService.isActive && openService.indexActive === i
+                            ? "animate"
+                            : "exit"
+                        }
+                        className="services-list__list smallText shadow"
+                      >
+                        {curr.numeric_list.map((currServ, index) => (
+                          <li key={`services-list__${i}-${index}-item`}>
+                            {currServ.text}
+                          </li>
+                        ))}
+                      </motion.ul>
+                    </AnimatePresence>
+                  </div>
+                ))}
             </div>
 
             <div className="services-list__wrapper services-list--main">
-              {data?.service?.list_2.map((currServMain, ind) => (
-                <div
-                  className="services-list"
-                  key={`services-list--main-${ind}`}
-                >
-                  <p className="semiBold">{currServMain.title}</p>
-                  {currServMain.sublist.map((currSubList, j) => (
-                    <span
-                      className="smallText shadow services-list__service"
-                      key={`${currServMain.title}-${j}`}
-                    >
-                      {currSubList.text}
+              {data?.service?.list_2 &&
+                data?.service?.list_2.map((currServMain, ind) => (
+                  <div
+                    className="services-list"
+                    key={`services-list--main-${ind}`}
+                  >
+                    <p className="semiBold">{currServMain.title}</p>
+                    {currServMain.sublist.map((currSubList, j) => (
                       <span
-                        className="services-list__icon"
-                        style={{ backgroundImage: `url(${currSubList.icon})` }}
-                      />
-                    </span>
-                  ))}
-                </div>
-              ))}
+                        className="smallText shadow services-list__service"
+                        key={`${currServMain.title}-${j}`}
+                      >
+                        {currSubList.text}
+                        <span
+                          className="services-list__icon"
+                          style={{
+                            backgroundImage: `url(${currSubList.icon})`,
+                          }}
+                        />
+                      </span>
+                    ))}
+                  </div>
+                ))}
             </div>
           </div>
         </>

@@ -29,14 +29,6 @@ export const Hero = () => {
   }, [currentVideo]);
 
   useEffect(() => {
-    if (videoArray[currentVideoRef.current]) {
-      videoArray[currentVideoRef.current].oncanplaythrough = () => {
-        console.log("Video can play through without interruption.");
-      };
-    }
-  }, [videoArray, currentVideo]);
-
-  useEffect(() => {
     const observer = new MutationObserver((mutationsList, observer) => {
       for (let mutation of mutationsList) {
         if (mutation.type === "childList") {

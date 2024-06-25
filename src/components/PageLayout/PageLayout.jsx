@@ -88,7 +88,7 @@ export const PageLayout = ({ children }) => {
           </DataProvider>
         )}
       </motion.div>
-      <motion.div className="page" {...anim(PageTransition.perspective)}>
+      <motion.div className="page" {...anim(PageTransition.perspective)} custom={document.body.offsetHeight}>
         <PopUpVideo />
         <motion.div {...anim(PageTransition.opacity)}>{children}</motion.div>
         <Footer />
