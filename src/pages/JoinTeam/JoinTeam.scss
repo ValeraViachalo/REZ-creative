@@ -5,7 +5,7 @@
   margin-bottom: 10vw;
   padding-top: 9vw;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     padding-top: 13vw;
   }
 

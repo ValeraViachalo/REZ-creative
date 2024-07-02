@@ -3,7 +3,7 @@
 .work-page {
   padding: VW(170) 0;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     padding: VW(126, $tablet) 0 VW(110, $tablet);
   }
 

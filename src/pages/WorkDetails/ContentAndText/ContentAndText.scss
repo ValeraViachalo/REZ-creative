@@ -1,0 +1,23 @@
+@import "/src/styles/global.scss";
+
+.content-and-text {
+  margin-top: VW(110);
+  display: flex;
+  gap: VW(60);
+
+  &--left {
+    flex-direction: row-reverse;
+  }
+
+  &__content {
+    width: VW(1150) !important;
+    height: VW(640) !important;
+  }
+
+  &__text {
+    padding-right: VW(80);
+    .title {
+      margin-bottom: VW(30);
+    }
+  }
+}

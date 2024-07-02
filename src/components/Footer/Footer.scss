@@ -27,7 +27,7 @@
 
     @include hoverForLinks();
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       font-size: 1.7vw;
     }
 

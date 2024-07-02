@@ -7,7 +7,7 @@
   position: sticky;
   top: 40%;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     padding: 0 5.3vw;
   }
 
@@ -36,7 +36,7 @@
     border-bottom: 0.1vw solid $g-100;
     position: relative;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       padding: 0 2vw 5vw 0;
       width: 20vw;
       flex-direction: column;
@@ -69,7 +69,7 @@
         bottom: 0;
         right: 0;
 
-        @include forVerticalTablet() {
+        @include forTablet() {
           height: 24%;
         }
 
@@ -94,7 +94,7 @@
       align-items: center;
       justify-content: space-between;
 
-      @include forVerticalTablet() {
+      @include forTablet() {
         flex-direction: column;
         align-items: flex-start;
         gap: 2vw;
@@ -118,7 +118,7 @@
       margin-top: 6vw;
       color: $g-80;
 
-      @include forVerticalTablet() {
+      @include forTablet() {
         font-size: 1.5vw;
         position: absolute;
         bottom: 0;

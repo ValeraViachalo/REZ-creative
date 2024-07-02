@@ -10,7 +10,7 @@
     gap: 0.5vw;
     margin-top: 0.5vw;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       gap: 3vw;
     }
 
@@ -25,7 +25,7 @@
     width: 1.5vw;
     height: 1.5vw;
     
-    @include forVerticalTablet() {
+    @include forTablet() {
       width: 3.5vw;
       height: 3.5vw;
     }

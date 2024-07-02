@@ -15,7 +15,7 @@
     justify-content: center;
   }
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     height: auto;
     aspect-ratio: 16/9;
     display: flex;
@@ -34,7 +34,7 @@
       margin: 19vh 0 24lvh;
     }
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       font-size: 5.4vw !important;
     }
 
@@ -62,7 +62,7 @@
     width: 93.7%;
     aspect-ratio: 16/9;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       width: 89.7%;
     }
 

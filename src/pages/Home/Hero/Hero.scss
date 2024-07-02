@@ -55,7 +55,7 @@
       mask-size: 94%;
       mask-position: 50% 91%;
 
-      @include forVerticalTablet() {
+      @include forTablet() {
         mask-position: 50% 95%;
       }
 
@@ -76,7 +76,7 @@
     bottom: 0;
     color: $w-100;
 
-    // @include forVerticalTablet() {
+    // @include forTablet() {
     //   height: 30vw;
     // }
 
@@ -157,7 +157,7 @@
         margin-top: 20.5vw;
       }
 
-      @include forVerticalTablet {
+      @include forTablet {
         margin-top: 21vw;
       }
     }
@@ -168,7 +168,7 @@
       height: 0.1vw;
       background-color: #fff;
 
-      @include forVerticalTablet {
+      @include forTablet {
         height: 0.2vw;
       }
 

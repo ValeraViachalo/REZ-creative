@@ -22,7 +22,7 @@
       width: 100%;
       position: relative;
 
-      @include forVerticalTablet {
+      @include forTablet {
         left: -30%;
       }
 
@@ -37,7 +37,7 @@
     background-position: 0% center;
     background-size: 115%;
 
-    @include forVerticalTablet {
+    @include forTablet {
       background-size: 125%;
     }
 
@@ -45,7 +45,7 @@
       width: 26.5vw;
       height: 36.2vw;
 
-      @include forVerticalTablet {
+      @include forTablet {
         width: 46vw;
         height: 65vw;
       }
@@ -60,7 +60,7 @@
       width: 36.5vw;
       height: 46.2vw;
 
-      @include forVerticalTablet {
+      @include forTablet {
         width: 66vw;
         height: 84vw;
       }

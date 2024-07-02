@@ -10,6 +10,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { MainForm } from "./Main/Main";
 import { DataContext } from "@/helpers/dataHelpers/dataProvider";
 import { ApplyVacancyForm } from "./Apply/Apply";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 export const FormSend = () => {
   const formRef = useRef();
@@ -22,60 +23,26 @@ export const FormSend = () => {
   const { pathname } = location;
   const pathVacancy = pathname.split("/");
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: formRef.current,
-        start: "top bottom",
-        end: "20% bottom",
-        scrub: 2,
-      },
-    });
-
-    gsap.set(formRef.current, {
-      scale: 0.9,
-    });
-
-    gsap.set(formContentRef.current, {
-      scale: 0.85,
-    });
-
-    gsap.set(formTitleRef.current, {
-      yPercent: 20,
-      clipPath: "inset(0 0 100% 0)",
-    });
-
-    gsap.to(formContentRef.current, {
-      scale: 1,
-      ease: "expo.out",
-      scrollTrigger: {
-        trigger: formRef.current,
-        start: "30% bottom",
-        end: "45% bottom",
-        scrub: 2,
-      },
-    });
-
-    tl.to(formRef.current, {
-      scale: 1,
-    });
-
-    tl.to(formTitleRef.current, {
-      yPercent: 0,
-      clipPath: "inset(0 0 0% 0)",
-    });
+  const { scrollYProgress: scroll1 } = useScroll({
+    target: formRef,
+    offset: ["0% 100%", "20% 100%"],
+    layoutEffect: false
   });
+
+  const scroll1Smooth = useSpring(scroll1, { stiffness: 100, damping: 25 })
+
+  const scale = useTransform(scroll1Smooth, [0, 1], [0.9, 1]);
+  const y = useTransform(scroll1Smooth, [0, 1], ["20%", "0%"]);
+  const clipPath = useTransform(scroll1Smooth, [0, 1], ["inset(0 0 100% 0)", "inset(0 0 0% 0)"]);
 
   return (
     !isLoading && (
-      <section className="main-form" ref={formRef} id="contact-us">
-        <h1 className="super-text" ref={formTitleRef}>
+      <motion.section style={{ scale }}  className="main-form" ref={formRef} id="contact-us">
+        <motion.h1 style={{ y, clipPath }} className="super-text" ref={formTitleRef}>
           {data?.form?.title}
-        </h1>
+        </motion.h1>
 
-        <div className="main-form__content" ref={formContentRef}>
+        <motion.div className="main-form__content" ref={formContentRef}>
           {pathVacancy[1] === "vacancies" ? (
             pathVacancy[2] ? (
               <ApplyVacancyForm />
@@ -86,8 +53,8 @@ export const FormSend = () => {
             <MainForm />
           )}
           <Socials />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
     )
   );
 };

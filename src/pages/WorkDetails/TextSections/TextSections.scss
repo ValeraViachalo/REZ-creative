@@ -1,0 +1,42 @@
+@import "/src/styles/global.scss";
+
+.text-section {
+  width: VW(640);
+  margin-top: VW(30);
+
+  &--margin {
+    margin-top: VW(110);
+  }
+
+  &--left {
+    padding-right: 3.13vw;
+    padding-left: 3.13vw;
+
+    @include forTablet() {
+      padding-right: 5.3vw;
+      padding-left: 5.3vw;
+    }
+
+    @include forMobile() {
+      padding-right: 5.2vw;
+      padding-left: 5.2vw;
+    }
+  }
+
+  &--long {
+    width: VW(840);
+  }
+
+  &--center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &__extra-title {
+    margin-bottom: VW(30);
+  }
+
+  &__title {
+    margin-bottom: VW(14);
+  }
+}

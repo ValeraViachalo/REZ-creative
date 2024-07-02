@@ -23,7 +23,7 @@
   &__item {
     width: 30.7vw;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       width: 29vw;
     }
 
@@ -36,7 +36,7 @@
     width: 100%;
     height: 42vw;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       height: 40vw;
     }
 

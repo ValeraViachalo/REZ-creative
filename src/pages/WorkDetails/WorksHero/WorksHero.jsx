@@ -12,9 +12,11 @@ const transition = {
   delay: 0.85,
 }
 
-export default function WorksHero({ data }) {
-  const { isLoading } = useContext(DataContext);
+export default function WorksHero() {
   const { loaderFinished } = useContext(LoaderContext);
+  const { data, isLoading } = useContext(DataContext);
+
+  const { hero: heroData } = data;
 
   const backgroundRef = useRef();
   const titleRef = useRef();
@@ -99,10 +101,10 @@ export default function WorksHero({ data }) {
       <section className="works-hero">
         <div className="top" ref={topRef}>
           <h1 className="top__title" ref={titleRef}>
-            {data.title}
+            {heroData.title}
           </h1>
         </div>
-        <img src={data.image} alt="works-hero" className="works-hero__bg" ref={backgroundRef}/>
+        <img src={heroData.image} alt="works-hero" className="works-hero__bg" ref={backgroundRef}/>
       </section>
     )
   );

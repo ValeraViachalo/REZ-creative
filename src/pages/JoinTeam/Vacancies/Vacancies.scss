@@ -3,7 +3,7 @@
 .vacancies {
   margin-top: 14vw;
 
-  @include forVerticalTablet {
+  @include forTablet {
     margin-top: 17vw;
   }
 
@@ -25,7 +25,7 @@
       grid-template-columns: repeat(12, 6.9vw);
       column-gap: 1vw;
 
-      @include forVerticalTablet {
+      @include forTablet {
         grid-template-columns: repeat(12, 6.5vw);
       }
       
@@ -36,7 +36,7 @@
       .positions {
         grid-column: 1/3;
 
-        @include forVerticalTablet() {
+        @include forTablet() {
           grid-column: 1/5;
         }
       }
@@ -44,7 +44,7 @@
       .deadline {
         grid-column: 9/11;
 
-        @include forVerticalTablet() {
+        @include forTablet() {
           grid-column: 11/13;
           text-align: end;
         }
@@ -73,7 +73,7 @@
     column-gap: 1vw;
     align-items: center;
     
-    @include forVerticalTablet {
+    @include forTablet {
       grid-template-columns: repeat(12, 6.5vw);
       row-gap: 2.5vw;
       padding: 8vw 0 2vw;
@@ -152,7 +152,7 @@
     width: fit-content;
     justify-self: end;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       grid-row: 1 / 1;
       grid-column: 1/5;
       justify-self: start;
@@ -177,7 +177,7 @@
     height: 0.1vw;
     z-index: 10;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       height: 0.3vw;
     }
 

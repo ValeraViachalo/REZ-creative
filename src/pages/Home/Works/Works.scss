@@ -4,7 +4,7 @@
   text-align: center;
   margin-top: 8vw;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     margin-top: 15vw;
   }
 

@@ -12,7 +12,7 @@
     margin: 0 auto;
     width: 57%;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       width: 89%;
     }
 

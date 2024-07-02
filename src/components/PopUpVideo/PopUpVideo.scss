@@ -24,7 +24,7 @@
     position: relative;
     z-index: 3;
 
-    @include forVerticalTablet {
+    @include forTablet {
       width: 85vw; 
     }
     
@@ -53,7 +53,7 @@
       right: 3vw;  
     }
 
-    @include forVerticalTablet {
+    @include forTablet {
       top: 4vw;
       right: 4vw;  
     }

@@ -4,7 +4,7 @@
   padding: 8vw 0;
   width: 60%;
 
-  @include forVerticalTablet {
+  @include forTablet {
     padding-top: 14vw;
     width: 70%;
   }
@@ -43,7 +43,7 @@
     list-style: disc;
     padding-left: 1.3vw;
 
-    @include forVerticalTablet {
+    @include forTablet {
       padding-left: 2.5vw;
     }
 
@@ -67,7 +67,7 @@
       width: 0.9vw;
       rotate: 180deg;
 
-      @include forVerticalTablet {
+      @include forTablet {
         height: 2vw;
         width: 2vw;
       }

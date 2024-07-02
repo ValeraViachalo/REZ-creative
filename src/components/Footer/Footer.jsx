@@ -10,6 +10,7 @@ import { FormSend } from "../Forms/Form/Form";
 import { Link } from "react-router-dom";
 import { DataContext, DataProvider } from "@/helpers/dataHelpers/dataProvider";
 import { URL_FOOTER } from "@/helpers/dataHelpers/linksAPI";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 export const Footer = () => {
   const { data, isLoading } = useContext(DataContext);
@@ -28,85 +29,74 @@ export const Footer = () => {
 
 const FooterContent = () => {
   const footerRef = useRef();
-  const footerMobileRef = useRef();
-  const footerListRef = useRef();
   const footerWrapperRef = useRef();
+  const footerListRef = useRef();
   const footerWrapperMobileRef = useRef();
 
   const { data, isLoading } = useContext(DataContext);
 
-  gsap.registerPlugin(ScrollTrigger);
+  const { scrollYProgress: filterScroll } = useScroll({
+    target: footerRef,
+    offset: ["30% 100%", "90% 100%"],
+    layoutEffect: false,
+  });
+  const scroll = useSpring(filterScroll, { stiffness: 10, damping: 10 });
+  const filter = useTransform(
+    scroll,
+    [0, 1],
+    ["brightness(0.12)", "brightness(1)"]
+  );
 
-  useGSAP(() => {
-    ScrollTrigger.refresh(true);
+  const { scrollYProgress: filterScrollMobile } = useScroll({
+    target: footerWrapperMobileRef,
+    offset: ["30% 100%", "90% 100%"],
+    layoutEffect: false,
+  });
+  const scrollMobile = useSpring(filterScrollMobile, {
+    stiffness: 10,
+    damping: 10,
+  });
+  const filterMobile = useTransform(
+    scrollMobile,
+    [0, 1],
+    ["brightness(0.12)", "brightness(1)"]
+  );
 
-    if (!isLoading) {
-      gsap.set(footerRef.current, { filter: "brightness(0.12)" });
-      gsap.to(footerRef.current, {
-        filter: "brightness(1)",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "30% bottom",
-          end: "bottom bottom",
-          scrub: 4,
-        },
-      });
+  const { scrollYProgress: scrollYProgressDesktop } = useScroll({
+    target: footerRef,
+    offset: ["0% 100%", "100% 100%"],
+  });
 
-      gsap.set(footerMobileRef.current, { filter: "brightness(0.12)" });
-      gsap.to(footerMobileRef.current, {
-        filter: "brightness(1)",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "30% bottom",
-          end: "bottom bottom",
-          scrub: 4,
-        },
-      });
+  const desktopScale = useTransform(scrollYProgressDesktop, [0, 1], [0.95, 1]);
+  const yDesktop = useTransform(
+    scrollYProgressDesktop,
+    [0, 1],
+    ["-85%", "55%"]
+  );
+  const yList = useTransform(scrollYProgressDesktop, [0.7, 1], ["20%", "0%"]);
 
-      gsap.set(footerWrapperRef.current, { yPercent: -55, scale: 0.95 });
-      gsap.to(footerWrapperRef.current, {
-        yPercent: 55,
-        scale: 1,
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      });
+  const { scrollYProgress: scrollYProgressMobile } = useScroll({
+    target: footerWrapperMobileRef,
+    offset: ["0% 100%", "100% 100%"],
+  });
 
-      gsap.set(footerListRef.current, { yPercent: 80 });
-      gsap.to(footerListRef.current, {
-        yPercent: 0,
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      });
-
-      gsap.set(footerWrapperMobileRef.current, { yPercent: -55, scale: 0.95 });
-      gsap.to(footerWrapperMobileRef.current, {
-        yPercent: 0,
-        scale: 1,
-        scrollTrigger: {
-          trigger: footerMobileRef.current,
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      });
-    }
-  }, [isLoading]);
+  const yMobile = useTransform(scrollYProgressMobile, [0, 1], ["-85%", "0%"]);
 
   return (
     <>
-      <footer className="footer" ref={footerRef}>
-        <div className="footer__wrapper container" ref={footerWrapperRef}>
-          <ul className="footer__top" ref={footerListRef}>
+      <motion.footer style={{ filter }} className="footer" ref={footerRef}>
+        <motion.div
+          style={{ scale: desktopScale, y: yDesktop }}
+          className="footer__wrapper container"
+          ref={footerWrapperRef}
+        >
+          <motion.ul
+            style={{ y: yList }}
+            className="footer__top"
+            ref={footerListRef}
+          >
             {data.links?.map((currLink, i) => (
-              <Link to={currLink.link} className="footer__link">
+              <Link to={currLink.link} className="footer__link" key={i}>
                 {currLink.name}
               </Link>
             ))}
@@ -114,17 +104,21 @@ const FooterContent = () => {
             <a href={data.made_by.link} className="footer__link">
               {data.made_by.name}
             </a>
-          </ul>
+          </motion.ul>
           <div className="footer__logo">
             <Logo color="#000" />
           </div>
-        </div>
-      </footer>
+        </motion.div>
+      </motion.footer>
 
-      <footer className="footer footer--mobile" ref={footerMobileRef}>
-        <div
+      <motion.footer
+        style={{ filter: filterMobile }}
+        className="footer footer--mobile"
+        ref={footerWrapperMobileRef}
+      >
+        <motion.div
           className="footer--mobile__wrapper container"
-          ref={footerWrapperMobileRef}
+          style={{ y: yMobile }}
         >
           <a href="/" className="footer__link">
             Terms and conditions
@@ -136,11 +130,11 @@ const FooterContent = () => {
           <div className="bottom">
             <a className="footer__link">© 2024 Rez Creative Inc.</a>
             <a href="https://twid.studio/en/" className="footer__link">
-              Mady by TWID
+              Made by TWID
             </a>
           </div>
-        </div>
-      </footer>
+        </motion.div>
+      </motion.footer>
     </>
   );
 };

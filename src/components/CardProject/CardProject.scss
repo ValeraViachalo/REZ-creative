@@ -75,7 +75,7 @@
       padding-block: 2vw;
     }
     
-    @include forVerticalTablet {
+    @include forTablet {
       padding-block: 3vw;
     }
     
@@ -94,7 +94,7 @@
       height: auto !important;
       text-wrap: balance;
 
-      @include forVerticalTablet {
+      @include forTablet {
         display: none;
       }
       

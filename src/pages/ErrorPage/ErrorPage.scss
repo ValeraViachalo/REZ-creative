@@ -11,7 +11,7 @@
   height: 100lvh;
 
   .super-text {
-    @include forVerticalTablet {
+    @include forTablet {
       padding: 0 4vw;
     }
     @include forMobile() {
@@ -24,7 +24,7 @@
     padding: 0.8vw 5vw;
     border: 0.1vw solid $c-purple;
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       margin-top: 6vw;
     }
 

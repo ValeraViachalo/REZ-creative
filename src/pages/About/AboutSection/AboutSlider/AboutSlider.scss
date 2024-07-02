@@ -7,7 +7,7 @@
   position: sticky;
   top: 14%;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     padding: 4vw 10vw;
   }
 
@@ -67,14 +67,14 @@
       margin-bottom: 100lvh;
     }
 
-    @include forVerticalTablet() {
+    @include forTablet() {
       padding: 0 3vw 2.6vw;
     }
 
     &--sticky {
       position: relative;
 
-      @include forVerticalTablet() {
+      @include forTablet() {
         width: 48vw;
         padding-left: 5.4vw;
         margin-top: 7vw;
@@ -141,7 +141,7 @@
         bottom: 0;
         right: 0;
 
-        @include forVerticalTablet() {
+        @include forTablet() {
           height: 74%;
         }
 

@@ -5,7 +5,7 @@
 
   padding: 10vw 3.13vw 0;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     padding: 13vw 5.3vw 0;
   }
 

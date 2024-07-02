@@ -1,12 +1,10 @@
 {
+  "documentTitle": "ATTACK ON TITAN x DEAD BY DAYLIGHT | Rez Creative",
+  "hero": {
+    "image": "https://app.rezcreative.com/wp-content/uploads/2024/04/1-1.webp",
+    "title": "ATTACK ON TITAN x DEAD BY DAYLIGHT"
+  },
   "page": [
-    {
-      "type": "hero",
-      "data": {
-        "image": "https://app.rezcreative.com/wp-content/uploads/2024/04/1-1.webp",
-        "title": "ATTACK ON TITAN x DEAD BY DAYLIGHT"
-      }
-    },
     {
       "type": "text_left",
       "data": {
@@ -24,13 +22,19 @@
       }
     },
     {
+      "type": "full_screen_image",
+      "data": "https://app.rezcreative.com/wp-content/uploads/2024/04/image-55.png"
+    },
+    {
       "type": "slider_with_mini_pictures",
-      "data": [
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-60.webp",
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-61.webp",
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-62.webp",
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-58.webp"
-      ]
+      "data": {
+        "images": [
+          "https://app.rezcreative.com/wp-content/uploads/2024/05/image-62.webp",
+          "https://app.rezcreative.com/wp-content/uploads/2024/05/image-60.webp",
+          "https://app.rezcreative.com/wp-content/uploads/2024/05/image-61.webp",
+          "https://app.rezcreative.com/wp-content/uploads/2024/05/image-58.webp"
+        ]
+      }
     },
     {
       "type": "textCenter",
@@ -50,20 +54,18 @@
     },
     {
       "type": "videos",
-      "data": [
-        {
-          "video": "https://vimeo.com/731408077",
-          "play_button_text": "Play trailer"
-        }
-      ]
+      "data": {
+        "video": "https://vimeo.com/731408077",
+        "play_button_text": "Play trailer"
+      }
     },
     {
-      "type": "slider_with_mini_pictures",
+      "type": "slider_with_mini_pictures_and_text",
       "data": [
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-60.webp",
         "https://app.rezcreative.com/wp-content/uploads/2024/05/image-61.webp",
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-62.webp",
-        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-58.webp"
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-60.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-58.webp",
+        "https://app.rezcreative.com/wp-content/uploads/2024/05/image-62.webp"
       ]
     },
     {

@@ -2,6 +2,7 @@
 @import "./utils/fonts";
 @import "./utils/mixins";
 @import "./utils/variables";
+@import "./utils/responsive-data";
 
 body {
   @extend %body-text;
@@ -24,7 +25,7 @@ body {
   padding-right: 3.13vw;
   padding-left: 3.13vw;
 
-  @include forVerticalTablet() {
+  @include forTablet() {
     padding-right: 5.3vw;
     padding-left: 5.3vw;
   }
@@ -69,95 +70,5 @@ body {
     &::after {
       transform: rotate(-360deg);
     }
-  }
-}
-
-[data-hidden] {
-  opacity: 0;
-}
-
-[data-only-desktop] {
-  display: none;
-
-  @include forDesktop() {
-    display: block;
-  }
-}
-
-[data-only-desktop--flex] {
-  display: none;
-
-  @include forDesktop() {
-    display: flex;
-  }
-}
-
-[data-not-desktop] {
-  display: block;
-
-  @include forDesktop() {
-    display: none;
-  }
-}
-
-[data-not-desktop--flex] {
-  display: flex;
-
-  @include forDesktop() {
-    display: none;
-  }
-}
-
-[data-hide-for-mobile] {
-  display: block;
-
-  @include forMobile() {
-    display: none;
-  }
-}
-
-[data-only-mobile] {
-  display: none;
-
-  @include forMobile() {
-    display: block;
-  }
-}
-
-[data-touch-element] {
-  display: block;
-
-  @include forDesktop {
-    display: none;
-  }
-
-  @include forHorizontalTablet {
-    display: none;
-  }
-
-  @media (hover: none) and (min-aspect-ratio: 2/3) {
-    display: block !important;
-  }
-}
-
-[data-desktop-element] {
-  @media (hover: none) {
-    display: none !important;
-  }
-
-  @include forMobile {
-    display: none;
-  }
-
-  @include forVerticalTablet {
-    display: none;
-  }
-
-  @include forDesktop {
-    display: block;
-  }
-
-  @include forHorizontalTablet {
-    display: block;
   }
 }
