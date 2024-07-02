@@ -58,6 +58,13 @@ const Root = () => {
 
   const renderComponent = (section, index) => {
     switch (section.type) {
+      case "product-info":
+        return (
+          <WorkDescriptions
+            data={section.data}
+            key={`work-details-section-${section.type}-${index}`}
+          />
+        );
       case "left_text": 
         return (
           <TextSection
@@ -70,13 +77,6 @@ const Root = () => {
           <TextSection
             data={section.data}
             position="center"
-            key={`work-details-section-${section.type}-${index}`}
-          />
-        );
-      case "text_left":
-        return (
-          <WorkDescriptions
-            data={section.data}
             key={`work-details-section-${section.type}-${index}`}
           />
         );
@@ -166,7 +166,6 @@ const Root = () => {
   return (
     <main className="work-details">
       <WorksHero />
-      <div style={{ height: "2vh" }}></div>
       {data.page.map((section, i) => renderComponent(section, i))}
     </main>
   );

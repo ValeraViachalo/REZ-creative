@@ -6,8 +6,9 @@
   },
   "page": [
     {
-      "type": "text_left",
+      "type": "product-info",
       "data": {
+        "title": "ALICE IN WONDERLAND x DEAD BY DAYLIGHT",
         "descriptions": "We are really proud of this collaboration with Attack on Titan! For this trailer, we got inspired by the show's opening credits, giving hommage to iconic sequences and adapting them to the game characters.",
         "info_list": [
           {

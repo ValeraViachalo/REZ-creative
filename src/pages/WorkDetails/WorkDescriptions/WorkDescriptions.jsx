@@ -6,7 +6,10 @@ export default function WorkDescriptions({ data }) {
 
   return data && (
     <section className='container work-descriptions'>
-      <p className="work-descriptions__descriptions">{data.descriptions}</p>
+      <div className="left">
+        <h3 className="semiBold work-descriptions__title">{data.title}</h3>
+        <p className="work-descriptions__descriptions">{data.descriptions}</p>
+      </div>
 
       <div className="info-list__wrapper">
         {data.info_list && data.info_list.map((currList, i) => (
