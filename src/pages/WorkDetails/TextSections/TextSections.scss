@@ -4,8 +4,21 @@
   width: VW(640);
   margin-top: VW(30);
 
+  @include forTablet {
+    width: VW(434, $tablet);
+  }
+
+
   &--margin {
     margin-top: VW(110);
+    
+    @include forTablet {
+      margin-top: VW(80, $tablet);
+    }
+
+    @include forMobile {
+      margin-top: VW(80, $mobile);
+    }
   }
 
   &--left {
@@ -20,11 +33,22 @@
     @include forMobile() {
       padding-right: 5.2vw;
       padding-left: 5.2vw;
+      width: auto;
     }
   }
 
   &--long {
     width: VW(840);
+
+    @include forTablet {
+      width: VW(500, $tablet);
+    }
+  
+    @include forMobile() {
+      padding-right: 5.2vw;
+      padding-left: 5.2vw;
+      width: auto;
+    }
   }
 
   &--center {
@@ -34,9 +58,25 @@
 
   &__extra-title {
     margin-bottom: VW(30);
+    
+    @include forTablet {
+      margin-bottom: VW(10, $tablet);
+    }
+    
+    @include forMobile {
+      margin-bottom: VW(12, $mobile);
+    }
   }
 
   &__title {
     margin-bottom: VW(14);
+
+    @include forTablet {
+      margin-bottom: VW(6, $tablet);
+    }
+    
+    @include forMobile {
+      margin-bottom: VW(8, $mobile);
+    }
   }
 }

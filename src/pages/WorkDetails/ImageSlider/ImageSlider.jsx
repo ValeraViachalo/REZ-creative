@@ -300,7 +300,7 @@ export const WindowSlider = ({ data }) => {
           </button>
         </div>
       </Splide>
-      <div className="bottom container">
+      <div className="bottom">
         {data.bottom && (
           <div className="slider-description">
             {data.bottom.title && (

@@ -4,18 +4,44 @@
   margin-top: VW(110);
   display: flex;
   gap: VW(60);
+  
+  @include forTablet {
+    margin-top: VW(80, $tablet);
+  }
+  
+  @include forMobile {
+    margin-top: VW(80, $mobile);
+    flex-direction: column;
+  }
 
   &--left {
     flex-direction: row-reverse;
+
+    @include forMobile {
+      flex-direction: column-reverse;
+    }  
   }
 
   &__content {
     width: VW(1150) !important;
     height: VW(640) !important;
+    
+    @include forTablet {
+      width: VW(473, $tablet) !important;
+      height: VW(266, $tablet) !important;
+    }
+    
+    @include forMobile {
+      width: 100% !important;
+      height: VW(200, $mobile) !important;
+    }
   }
 
   &__text {
-    padding-right: VW(80);
+    @include forDesktop {
+      padding-right: VW(80);
+    }
+
     .title {
       margin-bottom: VW(30);
     }

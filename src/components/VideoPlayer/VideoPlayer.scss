@@ -21,13 +21,13 @@
     transition: opacity 0.4s ease;
 
     @include forTablet {
-      width: VW(60, $tablet);
-      height: VW(60, $tablet);
+      width: VW(54, $tablet);
+      height: VW(34, $tablet);
     }
 
     @include forMobile {
-      width: VW(40, $mobile);
-      height: VW(40, $mobile);
+      width: VW(54, $mobile);
+      height: VW(34, $mobile);
     }
 
     &--playing {

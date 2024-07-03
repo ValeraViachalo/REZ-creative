@@ -3,9 +3,25 @@
 .works-slider {
   margin-top: VW(110);
 
+  @include forTablet {
+    margin-top: VW(80, $tablet);
+  }
+
+  @include forMobile {
+    margin-top: VW(80, $mobile);
+  }
+
   &__title {
     text-align: center;
     margin-bottom: VW(30);
+
+    @include forTablet {
+      margin-top: VW(30, $tablet);
+    }
+  
+    @include forMobile {
+      margin-top: VW(30, $mobile);
+    }  
   }
 
   .splide {
@@ -157,6 +173,10 @@
       flex-direction: column;
       gap: 0.8vw;
 
+      @include forHorizontalTablet {
+        grid-column: 4/10;
+      }
+
       @include forTablet {
         grid-column: 5/12;
         padding-right: 2.5vw;
@@ -167,7 +187,7 @@
         display: flex;
         grid-column: 1/13;
         gap: 4vw;
-        margin-top: 14vw;
+        margin-top: 5vw;
       }
     }
   }
@@ -177,11 +197,6 @@
     overflow: scroll;
     padding-bottom: 4vw;
     gap: 1vw;
-    margin-top: VW(80, $tablet);
-
-    @include forMobile {
-      margin-top: VW(80, $mobile);
-    }
 
     &::-webkit-scrollbar {
       display: block;
@@ -244,6 +259,27 @@
         z-index: -1;
       }
     }
+
+    .slider-free {
+      width: 100vw;
+
+      &__image {
+        @include forHorizontalTablet {
+          width: VW(704, $tablet);
+          height: VW(400, $tablet);
+        }
+        
+        @include forTablet {
+          width: VW(704, $tablet);
+          height: VW(400, $tablet);
+        }
+
+        @include forMobile {
+          width: VW(352, $mobile);
+          height: VW(194, $mobile);
+        }
+      }
+    }
   }
 }
 
@@ -252,9 +288,22 @@
   width: VW(1159);
 
   margin: VW(110) auto 0;
+  
+  @include forTablet {
+    margin: VW(80, $tablet) auto 0;
+  }
+
+  @include forMobile {
+    margin: VW(60, $mobile) auto 0;
+    width: VW(350, $mobile);
+  }
 
   .splide {
     height: VW(646);
+
+    @include forMobile {
+      height: VW(200, $mobile);
+    }
   }
 
   .space {
@@ -263,6 +312,10 @@
 
   .slide {
     height: VW(646);
+
+    @include forMobile {
+      height: VW(200, $mobile);
+    }  
 
     position: relative;
     display: flex !important;
@@ -301,6 +354,16 @@
 
       transition: opacity 0.4s ease;
 
+      @include forTablet {
+        width: VW(92, $tablet);
+      }
+      
+      @include forMobile {
+        width: VW(40, $mobile);
+        height: VW(200, $mobile);
+        mix-blend-mode: difference;
+      }
+
       @include hover {
         opacity: 0.6;
 
@@ -321,16 +384,34 @@
         height: VW(48);
         display: block;
         transition: transform 0.6s $ExpoInOut;
+
+        @include forTablet {
+          width: VW(48, $tablet);
+          height: VW(34, $tablet);
+        }
+        
+        @include forMobile {
+          width: VW(28, $mobile);
+          height: VW(20, $mobile);
+        }
       }
 
       &--prev {
         left: 0;
         transform: translateX(-100%);
+
+        @include forMobile {
+          transform: translateX(0%);
+        }
       }
 
       &--next {
         transform: translateX(100%);
         right: 0;
+
+        @include forMobile {
+          transform: translateX(0%);
+        }
       }
     }
 
@@ -346,11 +427,31 @@
       gap: VW(6);
       transform: translateY(100%);
 
+      @include forTablet {
+        gap: VW(6, $tablet);
+        height: VW(30, $tablet);
+      }
+      
+      @include forMobile {
+        gap: VW(6, $mobile);
+        height: VW(30, $mobile);
+      }
+
       &__page {
         width: VW(8);
         height: VW(8);
         background-color: $g-90;
         transition: background-color 0.4s 0.1s ease;
+
+        @include forTablet {
+          width: VW(8, $tablet);
+          height: VW(8, $tablet);
+        }
+        
+        @include forMobile {
+          width: VW(6, $mobile);
+          height: VW(6, $mobile);
+        }  
 
         &.is-active {
           background-color: $w-100;
@@ -367,19 +468,27 @@
     height: 41vw;
 
     &--next {
-      // background: #ff93933d;
       right: 0;
     }
 
     &--prev {
-      // background: #ff93933d;
       left: 0;
     }
   }
 
   .bottom {
-    width: VW(740);
+    width: 100%;
     margin: 3vw auto 0;
+    
+    @include forDesktop {
+      width: VW(740);
+      padding-right: 3.13vw;
+      padding-left: 3.13vw;
+    }
+
+    @include forTablet {
+      margin: VW(36, $tablet) auto 0;
+    }
 
     .slider-description {
       grid-column: 5/9;
@@ -397,7 +506,7 @@
         display: flex;
         grid-column: 1/13;
         gap: 4vw;
-        margin-top: 14vw;
+        margin-top: 7vw;
       }
     }
   }

@@ -67,8 +67,6 @@ const ScreenShotsImages = ({ images }) => {
 };
 
 export const ProjectsVideo = ({ data }) => {
-  const [isStarted, setIsStarted] = useState(false);
-
   return (
     <div className="container">
       <h1 className="works-trailer__title">{data.title}</h1>
@@ -81,8 +79,6 @@ export const ProjectsVideo = ({ data }) => {
 };
 
 export const SmallProjectsVideo = ({ data }) => {
-  const [isStarted, setIsStarted] = useState(false);
-
   return (
     <div className="container small-video">
       <h1 className="works-trailer__title">{data.title}</h1>
