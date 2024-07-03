@@ -27,24 +27,22 @@ export default function WorkDetails() {
 
   const pathWorks = pathname.split("/");
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (pathWorks[2] !== "attack-on-titan") {
-      setUrlDetails("/worksDetails.json");
-    } else {
-      setUrlDetails("/onlyNewBlocks.json");
-    }
-  }, []);
-
   // useEffect(() => {
   //   window.scrollTo(0, 0);
-  //   setUrlDetails(URL_WORKS_DETAILS + pathWorks[2]);
+  //   if (pathWorks[2] !== "attack-on-titan") {
+  //     setUrlDetails("/worksDetails.json");
+  //   } else {
+  //     setUrlDetails("/onlyNewBlocks.json");
+  //   }
   // }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setUrlDetails(URL_WORKS_DETAILS + pathWorks[2]);
+  }, []);
 
   return (
     <DataProvider url={urlDetails}>
-    {/* <DataProvider url={"/worksDetails.json"}>
-    <DataProvider url={"/onlyNewBlocks.json"}> */}
       <PageLayout>
         <Title />
         <Root />
