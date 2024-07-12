@@ -124,22 +124,17 @@ const WorksHeroPrepered = () => {
   const { data, isLoading } = useContext(DataContext);
 
   return (
-    data.page.length &&
-    data.page?.map((currSection) => {
-      return (
-        currSection?.type === "hero" && (
-          <section className="works-hero works-hero--loader">
-            <div className="top">
-              <h1 className="top__title">{currSection.data.title}</h1>
-            </div>
-            <img
-              src={currSection.data.image}
-              alt="works-hero"
-              className="works-hero__bg"
-            />
-          </section>
-        )
-      );
-    })
+    !isLoading && (
+      <section className="works-hero works-hero--loader">
+        <div className="top">
+          <h1 className="top__title">{data.hero.title}</h1>
+        </div>
+        <img
+          src={data.hero.image}
+          alt="works-hero"
+          className="works-hero__bg"
+        />
+      </section>
+    )
   );
 };

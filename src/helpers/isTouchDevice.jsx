@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useIsTouchDevice() {
-  const [isTouchDevice, setIsTouchDevice] = useState("ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    const handleTouchChange = () => {
-      setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0);
+    const matchMediaTouch = window.matchMedia('(pointer: coarse)');
+    const checkIfTouchDevice = () => {
+      setIsTouchDevice(matchMediaTouch.matches);
     };
 
-    window.addEventListener('resize', handleTouchChange);
+    checkIfTouchDevice();
+
+    // Update the state when the window is resized or orientation changes
+    matchMediaTouch.addEventListener('change', checkIfTouchDevice);
 
     return () => {
-      window.removeEventListener('resize', handleTouchChange);
+      matchMediaTouch.removeEventListener('change', checkIfTouchDevice);
     };
   }, []);
 
+  console.log(isTouchDevice);
   return isTouchDevice;
 }
