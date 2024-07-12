@@ -8,6 +8,12 @@
     width: VW(434, $tablet);
   }
 
+  @include forMobile {
+    width: auto;
+    padding-right: 5.2vw;
+    padding-left: 5.2vw;
+  }
+
 
   &--margin {
     margin-top: VW(110);

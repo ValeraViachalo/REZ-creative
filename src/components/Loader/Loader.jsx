@@ -143,11 +143,11 @@ const WorksHeroPrepered = () => {
     !isLoading && (
       <section className="works-hero works-hero--loader">
         <div className="top">
-          <h1 className="top__title">
+          {data.hero?.title && (<h1 className="top__title">
             {data.hero.title}
-          </h1>
+          </h1>)}
         </div>
-        <img src={data.hero.image} alt="works-hero" className="works-hero__bg" />
+        {data.hero?.image && (<img src={data.hero.image} alt="works-hero" className="works-hero__bg" />)}
       </section>
     )
   );

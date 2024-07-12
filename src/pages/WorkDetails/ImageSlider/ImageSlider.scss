@@ -265,8 +265,8 @@
 
       &__image {
         @include forHorizontalTablet {
-          width: VW(704, $tablet);
-          height: VW(400, $tablet);
+          width: VW(640, $tablet);
+          height: VW(357, $tablet);
         }
         
         @include forTablet {
@@ -487,7 +487,11 @@
     }
 
     @include forTablet {
-      margin: VW(36, $tablet) auto 0;
+      margin: VW(46, $tablet) auto 0;
+    }
+    
+    @include forMobile {
+      margin: VW(40, $mobile) auto 0;
     }
 
     .slider-description {
@@ -499,13 +503,13 @@
       @include forTablet {
         grid-column: 5/12;
         padding-right: 2.5vw;
-        gap: 3vw;
+        gap: 1vw;
       }
 
       @include forMobile {
         display: flex;
         grid-column: 1/13;
-        gap: 4vw;
+        gap: 1.2vw;
         margin-top: 7vw;
       }
     }

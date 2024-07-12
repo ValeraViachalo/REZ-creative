@@ -8,7 +8,7 @@ export default function WorkDescriptions({ data }) {
     <section className='container work-descriptions'>
       <div className="left">
         <h3 className="semiBold work-descriptions__title">{data.title}</h3>
-        <p className="work-descriptions__descriptions">{data.descriptions}</p>
+        <p className="work-descriptions__descriptions" dangerouslySetInnerHTML={{ __html: data.descriptions }}/>
       </div>
 
       <div className="info-list__wrapper">

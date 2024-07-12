@@ -39,12 +39,14 @@ const ScreenShotsImages = ({ images }) => {
   useGSAP(() => {
     if (imageRef.current) {
       imageRef.current.forEach((currImg) => {
-        gsap.to(currImg, {
+        gsap.fromTo(currImg, {
+          yPercent: 5,
+        }, {
           yPercent: -9,
           scrollTrigger: {
             trigger: currImg,
-            start: "top bottom",
-            end: "90% top",
+            start: "top 70%",
+            end: "bottom top",
             scrub: true,
           },
         });
