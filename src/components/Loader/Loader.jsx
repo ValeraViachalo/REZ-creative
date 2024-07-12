@@ -144,10 +144,10 @@ const WorksHeroPrepered = () => {
       <section className="works-hero works-hero--loader">
         <div className="top">
           <h1 className="top__title">
-            {data.main.title}
+            {data.hero.title}
           </h1>
         </div>
-        <img src={data.main.image} alt="works-hero" className="works-hero__bg" />
+        <img src={data.hero.image} alt="works-hero" className="works-hero__bg" />
       </section>
     )
   );
