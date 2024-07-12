@@ -61,7 +61,7 @@ const Root = () => {
             key={`work-details-section-${section.type}-${index}`}
           />
         );
-      case "center_text": 
+      case "textCenter": 
         return (
           <TextSection
             data={section.data}
@@ -111,7 +111,7 @@ const Root = () => {
             key={`work-details-section-${section.type}-${index}`}
           />
         );
-      case "video":
+      case "videos":
         return (
           <ProjectsVideo
             data={section.data}
