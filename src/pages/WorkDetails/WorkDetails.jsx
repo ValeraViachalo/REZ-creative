@@ -61,7 +61,7 @@ const Root = () => {
             key={`work-details-section-${section.type}-${index}`}
           />
         );
-      case "textCenter": 
+      case "center_text": 
         return (
           <TextSection
             data={section.data}
