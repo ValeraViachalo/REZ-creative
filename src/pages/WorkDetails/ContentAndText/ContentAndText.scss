@@ -24,7 +24,9 @@
 
   &__content {
     width: VW(1150) !important;
-    height: VW(640) !important;
+    // height: VW(640) !important;
+    aspect-ratio: 16 / 9;
+    height: auto;
     
     @include forTablet {
       width: VW(473, $tablet) !important;
@@ -33,7 +35,7 @@
     
     @include forMobile {
       width: 100% !important;
-      height: VW(200, $mobile) !important;
+      height: VW(210, $mobile) !important;
     }
   }
 

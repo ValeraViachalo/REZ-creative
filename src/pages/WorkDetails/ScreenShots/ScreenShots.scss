@@ -85,12 +85,13 @@
   
   &--small {
     width: VW(1150);
-    height: VW(650);
+    height: auto;
+    aspect-ratio: 16/9;
     margin: 0 auto;
     
     @include forMobile {
       width: 100%;
-      height: VW(200, $mobile);
+      height: VW(210, $mobile);
     }
   }
 

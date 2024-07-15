@@ -83,7 +83,7 @@ export const ProjectsVideo = ({ data }) => {
 export const SmallProjectsVideo = ({ data }) => {
   return (
     <div className="container small-video">
-      <h1 className="works-trailer__title">{data.title}</h1>
+      {data.title && (<h1 className="works-trailer__title">{data.title}</h1>)}
       <VideoPlayer
         url={data.video}
         customClass="works-trailer works-trailer--small video-play-wrapper"
