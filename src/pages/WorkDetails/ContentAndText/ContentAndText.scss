@@ -16,6 +16,7 @@
 
   &--left {
     flex-direction: row-reverse;
+    justify-content: space-between;
 
     @include forMobile {
       flex-direction: column-reverse;
@@ -24,17 +25,23 @@
 
   &__content {
     width: VW(1150) !important;
+    min-width: VW(1150) !important;
+    max-width: VW(1150) !important;
     // height: VW(640) !important;
     aspect-ratio: 16 / 9;
     height: auto;
     
     @include forTablet {
       width: VW(473, $tablet) !important;
+      min-width: VW(473, $tablet) !important;
+      max-width: VW(473, $tablet) !important;
       height: VW(266, $tablet) !important;
     }
     
     @include forMobile {
       width: 100% !important;
+      max-width: 100% !important;
+      min-width: 100% !important;
       height: VW(210, $mobile) !important;
     }
   }
