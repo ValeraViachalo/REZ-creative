@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
     .required("Please enter a valid email address"),
   phone: Yup.string().required("The field is required"),
   website: Yup.string(),
-  message: Yup.string().required("The field is required"),
+  message: Yup.string(),
   resume: Yup.mixed()
     .required("A file is required")
     .test(

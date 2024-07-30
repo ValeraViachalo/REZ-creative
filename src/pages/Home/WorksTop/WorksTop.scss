@@ -109,7 +109,7 @@
     }
   
     @include forMobile() {
-      height: 144vw;
+      height: 125vw;
     }
 
     &__title {
@@ -162,6 +162,10 @@
       // bottom: 0;
       // transform: translateX(-50%);
       width: 100%;
+
+      @include forMobile {
+        margin-top: 10vw;
+      }
     }
   }
 }

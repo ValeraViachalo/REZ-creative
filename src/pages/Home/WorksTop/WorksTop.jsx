@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useIsTouchDevice } from "@/helpers/isTouchDevice";
 import { DataContext } from "@/helpers/dataHelpers/dataProvider";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 export default function WorksTop() {
   return (
@@ -21,63 +22,45 @@ export default function WorksTop() {
 }
 
 const WorksTopMobile = () => {
-  const titlesRef = useRef([]);
-  const lineRef = useRef([]);
   const mainRef = useRef();
+  const lineWrapperRef = useRef();
 
   const { data, isLoading } = useContext(DataContext);
 
-  gsap.registerPlugin(ScrollTrigger);
+  const { scrollYProgress: scrollTitle } = useScroll({
+    target: mainRef,
+    offset: ["5% 100%", "10% 80%"],
+    layoutEffect: false,
+  });
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
+  const { scrollYProgress: scrollLine } = useScroll({
+    target: lineWrapperRef,
+    offset: ["5% 100%", "40% 100%"],
+    layoutEffect: false,
+  });
 
-    ScrollTrigger.refresh(true);
+  const scaleHadler = (i) => {
+    const scrollLineSpring = useSpring(scrollLine, {
+      stiffness: 100 + i * 10,
+      damping: 10 + 15 * i,
+    });
+    return useTransform(scrollLineSpring, [0, 1], [0.2, 1]);
+  };
 
-    if (!isLoading) {
-      lineRef.current.forEach((currLine, i) => {
-        tl.set(currLine, { scale: 0.2 });
-
-        tl.fromTo(
-          currLine,
-          {
-            scale: 0.2,
-          },
-          {
-            scale: 1,
-            ease: "expo.inOut",
-            scrollTrigger: {
-              trigger: mainRef.current,
-              start: "25% bottom",
-              end: "40% 80%",
-              scrub: (i + 1) * 0.6,
-            },
-          }
-        );
-      });
-
-      titlesRef.current.forEach((currT, i) => {
-        tl.fromTo(
-          currT,
-          {
-            clipPath: "inset(0% 0 100% 0)",
-            yPercent: 20,
-          },
-          {
-            clipPath: "inset(0% 0 0% 0)",
-            yPercent: 0,
-            ease: "expo.inOut",
-            scrollTrigger: {
-              trigger: mainRef.current,
-              start: "5% 90%",
-              end: "10% 85%",
-              scrub: (i + 3) * 0.9,
-            },
-          }
-        );
-      });
-    }
-  }, [isLoading, titlesRef, mainRef]);
+  const titleHandlerAnim = (i) => {
+    const scrollLineSpring = useSpring(scrollTitle, {
+      stiffness: 100 + i * 10,
+      damping: 10 + 5 * i,
+    });
+    return {
+      y: useTransform(scrollLineSpring, [0, 1], ["20%", "0%"]),
+      clipPath: useTransform(
+        scrollLineSpring,
+        [0, 1],
+        ["inset(0% 0 100% 0)", "inset(0% 0 0% 0)"]
+      ),
+    };
+  };
 
   return (
     <>
@@ -85,26 +68,40 @@ const WorksTopMobile = () => {
         <section className="mobile works-top" ref={mainRef}>
           <div className="works-top__title mobile">
             <h1 className="super-text">
-              <span ref={(el) => titlesRef.current.push(el)}>Hyper</span>
+              <motion.span
+                style={{
+                  y: titleHandlerAnim(1).y,
+                  clipPath: titleHandlerAnim(1).clipPath,
+                }}
+              >
+                Hyper
+              </motion.span>
             </h1>
             <h1 className="super-text">
-              <span ref={(el) => titlesRef.current.push(el)}>Resolution</span>
+              <motion.span
+                style={{
+                  y: titleHandlerAnim(2).y,
+                  clipPath: titleHandlerAnim(2).clipPath,
+                }}
+              >
+                Resolution
+              </motion.span>
             </h1>
           </div>
 
-          <div className="works-top__lines mobile">
-            <span
+          <div className="works-top__lines mobile" ref={lineWrapperRef}>
+            <motion.span
               className="works-top__line works-top__line-1"
-              ref={(el) => lineRef.current.push(el)}
-            ></span>
-            <span
+              style={{ scale: scaleHadler(1) }}
+            />
+            <motion.span
               className="works-top__line works-top__line-2"
-              ref={(el) => lineRef.current.push(el)}
-            ></span>
-            <span
+              style={{ scale: scaleHadler(2) }}
+            />
+            <motion.span
               className="works-top__line works-top__line-3"
-              ref={(el) => lineRef.current.push(el)}
-            ></span>
+              style={{ scale: scaleHadler(3) }}
+            />
           </div>
           <h1 className="super-text works-top__final-title mobile">
             {data.works.title_2}
@@ -144,8 +141,8 @@ const WorksTopDesktop = () => {
             ease: "expo.inOut",
             scrollTrigger: {
               trigger: mainRef.current,
-              start: `${(i)}% 75%`,
-              end: `${(i)}% 0%`,
+              start: `${i}% 75%`,
+              end: `${i}% 0%`,
               // start: "top 75%",
               // end: "top 0%",
               // scrub: (i + 1) * 0.2,
@@ -164,8 +161,8 @@ const WorksTopDesktop = () => {
             ease: "expo.inOut",
             scrollTrigger: {
               trigger: mainRef.current,
-              start: `${25 + (i * 2)}% bottom`,
-              end: `${40 + (i * 2)}% top`,
+              start: `${25 + i * 2}% bottom`,
+              end: `${40 + i * 2}% top`,
               scrub: true,
             },
           }
@@ -181,8 +178,8 @@ const WorksTopDesktop = () => {
             ease: "expo.inOut",
             scrollTrigger: {
               trigger: mainRef.current,
-              start: `${55 + (i * 2)}% bottom`,
-              end: `${75 + (i * 2)}% top`,
+              start: `${55 + i * 2}% bottom`,
+              end: `${75 + i * 2}% top`,
               // start: "55% bottom",
               // end: "75% top",
               // scrub: (i + 1) * 0.2,
@@ -265,7 +262,6 @@ const WorksTopDesktop = () => {
         {
           scale: 0.2,
           yPercent: -50,
-
         },
         {
           scale: 1,

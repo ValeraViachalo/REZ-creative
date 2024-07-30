@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Please enter a valid email address")
     .required("Please enter a valid email address"),
-  message: Yup.string().required("The field is required"),
+  message: Yup.string(),
 });
 
 export const MainForm = () => {

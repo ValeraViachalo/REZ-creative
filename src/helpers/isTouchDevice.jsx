@@ -19,6 +19,5 @@ export function useIsTouchDevice() {
     };
   }, []);
 
-  console.log(isTouchDevice);
   return isTouchDevice;
 }
