@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./PopUpVideo.scss";
-import ReactPlayer from "react-player";
 import { VideoPlay } from "../VideoPlay/VideoPlay";
 import { AnimatePresence, motion } from "framer-motion";
 import { anim, WorksPopUpAnim } from "@/helpers/anim";
-
-let timeoutId = null;
 
 export const PopUpVideo = () => {
   const navigate = useNavigate();
@@ -22,57 +18,43 @@ export const PopUpVideo = () => {
       setVideo(searchParams.get("popUpVideo"));
       setProjectName(searchParams.get("name"));
     }
-
-    // if (!isActive) {
-    //   searchParams.delete("popUpVideo");
-    //   searchParams.delete("name");
-    //   navigate("?" + searchParams.toString(), { replace: true });
-    // }
-  }, [searchParams, isActive]);
+  }, [searchParams]);
 
   useEffect(() => {
     if (isActive) {
-      const handleScroll = () => {
-        setIsActive(false);
-      };
-  
       const timeoutId = setTimeout(() => {
-        window.addEventListener("scroll", handleScroll);
-      }, 1000); // Затримка в мілісекундах
-  
+        window.addEventListener("scroll", handleClose);
+      }, 1000);
+
       return () => {
         clearTimeout(timeoutId);
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("scroll", handleClose);
       };
     }
   }, [isActive]);
-  
+
+  const handleClose = () => {
+    setIsActive(false);
+    // Remove the query parameters without changing the base URL
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete("popUpVideo");
+    newSearchParams.delete("name");
+    navigate(`?${newSearchParams.toString()}`, { replace: true });
+  };
+
   return (
     <AnimatePresence>
       {isActive && (
-        <motion.div className="pop-up-video"
-        {...anim(WorksPopUpAnim.body)}
-        >
-          <span className="close-area" onClick={() => setIsActive(false)}/>
+        <motion.div className="pop-up-video" {...anim(WorksPopUpAnim.body)}>
+          <span className="close-area" onClick={handleClose} />
           {projectName.length < 40 ? (
             <h1 className="pop-up-video__title">{projectName}</h1>
-          ): (
+          ) : (
             <h2 className="pop-up-video__title">{projectName}</h2>
           )}
-          <Link to="/work">
-            <h3
-              className="pop-up-video__close"
-              onClick={() => setIsActive(false)}
-            >
-              Close
-            </h3>
-          </Link>
-          {/* <h3
-            className="pop-up-video__close"
-            onClick={() => setIsActive(false)}
-          >
+          <h3 className="pop-up-video__close" onClick={handleClose}>
             Close
-          </h3> */}
+          </h3>
           <VideoPlay buttonText="Play trailer" linkUrl={video} />
         </motion.div>
       )}
