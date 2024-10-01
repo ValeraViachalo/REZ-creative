@@ -73,8 +73,12 @@ export const GeneralEnquiresForm = () => {
       {(formik) => (
         <div>
           {submitted && (
-                        <div className="form form--submited" dangerouslySetInnerHTML={{ __html: data?.form?.message_after_form_submit }}/>
-
+            <div
+              className="form form--submited"
+              dangerouslySetInnerHTML={{
+                __html: data?.form?.message_after_form_submit,
+              }}
+            />
           )}
           {!submitted && (
             <Form className="form form--general">

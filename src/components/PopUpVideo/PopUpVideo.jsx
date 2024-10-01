@@ -23,11 +23,11 @@ export const PopUpVideo = () => {
       setProjectName(searchParams.get("name"));
     }
 
-    if (!isActive) {
-      searchParams.delete("popUpVideo");
-      searchParams.delete("name");
-      navigate("?" + searchParams.toString(), { replace: true });
-    }
+    // if (!isActive) {
+    //   searchParams.delete("popUpVideo");
+    //   searchParams.delete("name");
+    //   navigate("?" + searchParams.toString(), { replace: true });
+    // }
   }, [searchParams, isActive]);
 
   useEffect(() => {
@@ -59,12 +59,20 @@ export const PopUpVideo = () => {
           ): (
             <h2 className="pop-up-video__title">{projectName}</h2>
           )}
-          <h3
+          <Link to="/work">
+            <h3
+              className="pop-up-video__close"
+              onClick={() => setIsActive(false)}
+            >
+              Close
+            </h3>
+          </Link>
+          {/* <h3
             className="pop-up-video__close"
             onClick={() => setIsActive(false)}
           >
             Close
-          </h3>
+          </h3> */}
           <VideoPlay buttonText="Play trailer" linkUrl={video} />
         </motion.div>
       )}
